@@ -1,0 +1,65 @@
+.table {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table thead th {
+  background-color: #007bff;
+  color: white;
+  border-bottom: none;
+  padding: 12px;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+.table td {
+  padding: 12px;
+  vertical-align: middle;
+}
+
+.alert {
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+h2 {
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+.material-symbols-outlined {
+  padding: auto;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+}
+
+.delete-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  transition: all 0.2s ease-in-out;
+  
+}
+
+.delete-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
+}
+
+.delete-btn i {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

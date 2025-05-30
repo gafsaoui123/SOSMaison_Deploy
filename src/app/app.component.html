@@ -1,0 +1,7 @@
+<app-header *ngIf="showHeader"></app-header>
+
+<div
+  [ngClass]="{ 'main-content': showHeader, 'no-header-margin': !showHeader }"
+>
+  <router-outlet></router-outlet>
+</div>

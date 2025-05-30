@@ -1,0 +1,28 @@
+.rating-bar {
+    height: 8px;
+    border-radius: 4px;
+    background-color: #ffc107;
+  }
+  .btn-primary {
+    background-color: #2953fc;
+    border-color: #2d4ff9;
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background-color: #255cf2;
+    border-color: #2973fe;
+  }
+  .text-primary {
+    color: #ffc107 !important;
+  }
+  .rounded-button {
+    border-radius: 8px;
+  }
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  .ri-fw {
+    width: 1.25em;
+    text-align: center;
+  }
+  

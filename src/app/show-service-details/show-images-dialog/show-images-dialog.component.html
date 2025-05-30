@@ -1,0 +1,24 @@
+<div class="image-dialog-container">
+  <h2 mat-dialog-title class="dialog-title">
+    <mat-icon>photo_library</mat-icon> Images du produit
+  </h2>
+
+  <mat-dialog-content class="mat-typography image-dialog-content">
+    <div class="image-grid">
+      <mat-card class="image-card" *ngFor="let fileHandle of data.images">
+        <img
+          mat-card-image
+          [src]="fileHandle.url"
+          alt="Image du produit"
+          class="product-image"
+        />
+      </mat-card>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="dialog-actions">
+    <button mat-flat-button color="accent" mat-dialog-close>
+      <mat-icon>close</mat-icon> Fermer
+    </button>
+  </mat-dialog-actions>
+</div>

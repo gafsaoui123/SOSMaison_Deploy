@@ -1,0 +1,174 @@
+<div class="signup-container">
+  <div class="signup-modal">
+    <div class="row g-0 h-100">
+      <!-- Left Side - Login Form -->
+      <div class="col-md-5 signup-left">
+        <div class="brand-container">
+          <div class="mt-3 brand-logo">SOSmaison</div>
+        </div>
+
+        <div class="signup-form-content">
+          <h1 class="signup-title">Login to your account</h1>
+          <p class="signup-subtitle">Welcome back! Please login to continue</p>
+
+          <form
+            class="signup-form"
+            #loginForm="ngForm"
+            (ngSubmit)="login(loginForm)"
+          >
+            <!-- Username -->
+            <div class="mb-3">
+              <label for="userName" class="form-label">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                id="userName"
+                name="userName"
+                ngModel
+                placeholder="Enter your username"
+              />
+            </div>
+
+            <!-- Password -->
+            <div class="mb-4">
+              <label for="userPassword" class="form-label">Password</label>
+              <div class="password-input-container">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="userPassword"
+                  name="userPassword"
+                  ngModel
+                  placeholder="Enter your password"
+                />
+                <button type="button" class="btn-toggle-password">
+                  <i class="far fa-eye-slash"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Forgot password -->
+            <div class="forgot-password text-end mb-3">
+              <a href="#">Forgot password?</a>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-submit w-100 mb-4">
+              LOGIN
+            </button>
+          </form>
+
+          <!-- Social Login -->
+          <div class="signup-footer">
+            <!-- Sign up link -->
+            <div class="signin-text mt-3 text-center">
+              <span>Forgot account? </span>
+              <a routerLink="/register" class="signin-link"></a>
+            </div>
+          </div>
+          <div class="signup-footer">
+            <!-- Sign up link -->
+            <div class="signin-text mt-8 text-center">
+              <span>Or </span>
+              <a routerLink="/register" class="signin-link"></a>
+            </div>
+          </div>
+          <div class="signup-footer">
+            <!-- Sign up link -->
+            <div class="signin-text mt-8 text-center">
+              <span>No account? </span>
+              <a routerLink="/register" class="signin-link">Sign up</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side - Image & Extras -->
+      <div class="col-md-7 signup-right">
+        <button type="button" class="btn-close-custom" aria-label="Close">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <!-- Background and cards remain untouched -->
+        <div class="task-card task-card-primary">
+          <div class="task-card-content">
+            <h6 class="task-card-title">Task Review With Team</h6>
+            <p class="task-card-time">09:30am-10:20am</p>
+          </div>
+          <div class="task-card-indicator"></div>
+        </div>
+
+        <div class="task-card task-card-secondary">
+          <div class="task-card-content">
+            <p class="task-card-time">09:30am-10:00am</p>
+          </div>
+        </div>
+
+        <div class="calendar-widget">
+          <div class="calendar-days">
+            <div class="calendar-day">
+              <span class="day-name">Sun</span
+              ><span class="day-number">22</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-name">Mon</span
+              ><span class="day-number">23</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-name">Tue</span
+              ><span class="day-number">24</span>
+            </div>
+            <div class="calendar-day active">
+              <span class="day-name">Wed</span
+              ><span class="day-number">25</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-name">Thu</span
+              ><span class="day-number">26</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-name">Fri</span
+              ><span class="day-number">27</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-name">Sat</span
+              ><span class="day-number">28</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-card task-card-meeting">
+          <div class="task-card-content">
+            <h6 class="task-card-title">Daily Meeting</h6>
+            <p class="task-card-time">12:00pm-01:00pm</p>
+            <div class="attendees">
+              <div class="attendee-avatar"></div>
+              <div class="attendee-avatar"></div>
+              <div class="attendee-avatar"></div>
+              <div class="attendee-avatar"></div>
+            </div>
+          </div>
+          <div class="task-card-indicator"></div>
+        </div>
+
+        <div class="team-avatars">
+          <div class="team-avatar"></div>
+          <div class="team-avatar"></div>
+          <div class="team-avatar"></div>
+        </div>
+
+        <div class="signup-image-container">
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-cnzr2yL7GyjUQsRQ0KxKOxM3rkUvT7.png"
+            alt="Team collaboration"
+            class="signup-image"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <br />
+  <br />
+  <br />
+</div>

@@ -1,0 +1,477 @@
+<!-- hero.component.html -->
+<div class="safehome-hero">
+  <!-- Hero Section -->
+  <div class="hero-banner">
+    <div class="container text-center py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <h1 class="display-4 fw-bold text-white mb-3">
+            Your Home, Our Expertise
+          </h1>
+          <p class="lead text-white mb-5">
+            Connect with trusted home service professionals for all your repair,
+            maintenance, and improvement needs.
+          </p>
+
+          <!-- Search Form -->
+          <div class="search-container hover-highlight">
+            <div class="row g-2 justify-content-center">
+              <div class="col-md-5">
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  placeholder="What service do you need?"
+                />
+              </div>
+              <div class="col-md-5">
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  placeholder="Enter your location"
+                />
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-lg custom-find-btn">Find</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="quick-links mt-4">
+            <a
+              href="#"
+              class="badge rounded-pill bg-light bg-opacity-25 text-white py-2 px-3 mx-1"
+            >
+              Emergency Plumbing
+            </a>
+            <a
+              href="#"
+              class="badge rounded-pill bg-light bg-opacity-25 text-white py-2 px-3 mx-1"
+            >
+              Home Cleaning
+            </a>
+            <a
+              href="#"
+              class="badge rounded-pill bg-light bg-opacity-25 text-white py-2 px-3 mx-1"
+            >
+              Electrical Repairs
+            </a>
+            <a
+              href="#"
+              class="badge rounded-pill bg-light bg-opacity-25 text-white py-2 px-3 mx-1"
+            >
+              Lawn Care
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="features-section bg-white py-5">
+    <div class="container text-center">
+      <h2 class="fw-bold mb-2">Why Choose SOSmaison</h2>
+      <p class="text-muted mb-5">
+        We connect you with vetted professionals who provide reliable and
+        quality home services.
+      </p>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card border-0 h-100 p-4">
+            <div class="icon-wrapper mb-3 mx-auto">
+              <i class="bi bi-shield-check text-primary"></i>
+            </div>
+            <h3>Vetted Professionals</h3>
+            <p class="text-muted fs-6">
+              All service providers are background checked and verified for
+              quality assurance.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card border-0 h-100 p-4">
+            <div class="icon-wrapper mb-3 mx-auto">
+              <i class="bi bi-info-circle text-primary"></i>
+            </div>
+            <h3>Transparent Pricing</h3>
+            <p class="text-muted fs-6">
+              Know the cost upfront with no hidden fees or surprise charges.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card border-0 h-100 p-4">
+            <div class="icon-wrapper mb-3 mx-auto">
+              <i class="bi bi-shield text-primary"></i>
+            </div>
+            <h3>Guaranteed Quality</h3>
+            <p class="text-muted fs-6">
+              100% satisfaction guarantee on all services or your money back.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--**************************************************************-->
+<!--
+<section class="carsour">
+  <div class="c1">
+    <h2>Welcome to <span>SOSmaison</span></h2>
+
+    <p>Register Now</p>
+
+    <a routerLink="/login"> Register now</a>
+  </div>
+</section>
+
+<section class="services">
+  <h2>Services</h2>
+
+  <div class="container">
+    <div class="card">
+      <h3>Services</h3>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum neque
+        quos culpa voluptatum quasi, laborum dolore nihil porro, ullam qui
+        distinctio. Aliquam quae iusto deleniti provident nisi, voluptatem
+        debitis voluptate.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Services</h3>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum neque
+        quos culpa voluptatum quasi, laborum dolore nihil porro, ullam qui
+        distinctio. Aliquam quae iusto deleniti provident nisi, voluptatem
+        debitis voluptate.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Services</h3>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum neque
+        quos culpa voluptatum quasi, laborum dolore nihil porro, ullam qui
+        distinctio. Aliquam quae iusto deleniti provident nisi, voluptatem
+        debitis voluptate.
+      </p>
+    </div>
+  </div>
+</section>
+-->
+
+<!--**************************************************************-->
+
+<section class="services-section">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="row text-center mb-4">
+      <div class="col-12">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">
+          Browse through our wide range of professional home services designed
+          to meet all your needs.
+        </p>
+      </div>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="category-filters">
+          <button
+            *ngFor="let category of categories"
+            class="btn category-btn"
+            [class.active]="selectedCategory === category"
+            (click)="filterServices(category)"
+          >
+            {{ category }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service Cards -->
+    <div class="row">
+      <div
+        class="col-md-6 col-lg-3 mb-4"
+        *ngFor="let service of filteredServices"
+      >
+        <div class="service-card">
+          <!-- Service Image with Icon -->
+          <div class="service-image">
+            <img
+              [src]="service.image"
+              alt="{{ service.name }}"
+              (error)="
+                service.image =
+                  'https://via.placeholder.com/500x300?text=' + service.name
+              "
+            />
+            <div class="service-icon">
+              <!-- Fixed icon class to properly use Font Awesome -->
+              <i class="fa {{ service.iconClass }}"></i>
+            </div>
+          </div>
+
+          <!-- Service Content -->
+          <div class="service-content">
+            <h3 class="service-title">{{ service.name }}</h3>
+            <p class="service-category">{{ service.category }}</p>
+            <p class="service-description">{{ service.description }}</p>
+
+            <!-- Service Footer with Rating and Price -->
+            <div class="service-footer">
+              <div class="service-rating">
+                <i class="fa fa-star"></i>
+                <span class="rating-value">{{ service.rating }}</span>
+                <span class="review-count">({{ service.reviews }})</span>
+              </div>
+              <div class="service-price">{{ service.priceRange }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View All Button -->
+    <div class="row mt-4">
+      <div class="col-12 text-center">
+        <button class="btn view-all-btn">View All Services</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--**************************************************************--><!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+
+<section class="emergency-services py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <h2 class="fw-bold mb-3">Need Emergency Home Services?</h2>
+        <p class="text-muted mb-4">
+          Our network of professionals is available 24/7 for urgent home service
+          needs. Quick response, reliable service.
+        </p>
+        <div class="d-flex gap-3">
+          <button class="btn btn-primary px-4">Call Now</button>
+          <button class="btn btn-outline-secondary border-1 px-4">
+            Book Online
+          </button>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <img
+          src="src\app\home\images\im3.png"
+          alt="Professional cleaning window shutters"
+          class="img-fluid rounded"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+
+<section class="service-providers py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-3">Top Service Providers</h2>
+      <p class="text-muted">
+        Meet our highest-rated professional service providers with exceptional
+        customer satisfaction.
+      </p>
+    </div>
+    <!-- ********************************************************************************************* -->
+    <!-- ********************************************************************************************* -->
+    <!-- ********************************************************************************************* -->
+    <!-- ********************************************************************************************* -->
+    <!-- ********************************************************************************************* -->
+    <!--component mtaa l khadema (to fix later)-->
+    <div class="row">
+      <!-- Provider Card (ngFor loop) -->
+      <div class="col-lg-4 col-md-6 mb-4" *ngFor="let p of products">
+        <div class="provider-card p-4 h-100">
+          <div class="d-flex align-items-center mb-3">
+            <div class="provider-img-container me-3">
+              <img
+                [src]="p.productImages[0]?.url"
+                [alt]="p.productName || 'Service Provider'"
+                class="provider-img"
+              />
+            </div>
+            <div>
+              <div class="d-flex align-items-center">
+                <h5 class="mb-0 me-2">{{ p.productName }}</h5>
+                <span class="verified-badge">Verified</span>
+              </div>
+              <p class="text-muted mb-0">Tunis</p>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="d-flex align-items-center mb-2">
+              <div class="stars me-2">
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-half text-warning"></i>
+              </div>
+              <span class="fw-bold">4.9</span>
+              <span class="text-muted ms-1">(180 reviews)</span>
+            </div>
+            <p>{{ p.productDescription }}</p>
+          </div>
+
+          <div class="service-tags mb-3">
+            <span class="service-tag">Plumbing Services</span>
+            <span class="service-tag">Electrical Work</span>
+            <span class="service-tag">Home Repair</span>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-muted">20 years experience</span>
+            <button
+              class="btn btn-outline-primary btn-sm"
+              (click)="p.productId && contactProvider(p.productId)"
+            >
+              Contact
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ********************************************************************************************* -->
+    <!-- ********************************************************************************************* -->
+    <div class="text-center mt-4">
+      <button
+        class="btn btn-outline-secondary px-4"
+        (click)="viewAllProviders()"
+      >
+        View All Providers
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials-section">
+  <div class="container">
+    <h2 class="section-title">What Our Customers Say</h2>
+    <p class="section-subtitle">
+      Read testimonials from satisfied customers who have used our platform to
+      find reliable home services.
+    </p>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card" *ngFor="let testimonial of testimonials">
+        <div class="testimonial-header">
+          <img
+            [src]="testimonial.image"
+            alt="Profile picture of {{ testimonial.name }}"
+            class="profile-image"
+          />
+          <div class="testimonial-info">
+            <h3 class="customer-name">{{ testimonial.name }}</h3>
+            <div class="rating">
+              <span
+                class="star"
+                *ngFor="let star of [1, 2, 3, 4, 5]"
+                [ngClass]="{ filled: star <= testimonial.rating }"
+                >★</span
+              >
+            </div>
+          </div>
+        </div>
+        <p class="testimonial-text">"{{ testimonial.text }}"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<section class="app-download-section">
+  <div class="container">
+    <div class="app-download-content">
+      <div class="app-info">
+        <h2>Download Our Mobile App</h2>
+        <p>
+          Get access to exclusive deals and book services on the go with our
+          mobile app. Available for iOS and Android.
+        </p>
+        <div class="app-buttons">
+          <a href="#" class="app-button">
+            <img src="assets/images/app-store.png" alt="App Store" />
+          </a>
+          <a href="#" class="app-button">
+            <img src="assets/images/google-play.png" alt="Google Play" />
+          </a>
+        </div>
+      </div>
+      <div class="app-image">
+        <img src="assets/images/mobile-app.png" alt="Mobile App" />
+      </div>
+    </div>
+  </div>
+</section>
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--**************************************************************-->
+<!--footer-->
+<app-footer></app-footer>

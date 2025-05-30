@@ -1,0 +1,389 @@
+<div class="container mt-4">
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+      <li class="breadcrumb-item"><a href="#">Trouver Un Pro</a></li>
+      <li class="breadcrumb-item">
+        <a href="#">Plomberie À El Mourouj 6, Null</a>
+      </li>
+      <li class="breadcrumb-item active">Profile De Slim Riahi</li>
+    </ol>
+  </nav>
+
+  <h1 class="mb-4">Services de Plomberie par slim Riahi</h1>
+
+  <div class="row">
+    <!-- Left Column - Profile Info -->
+    <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="d-flex">
+            <div class="me-3">
+              <img
+                [src]="profileData?.imageUrl || 'assets/placeholder.png'"
+                alt="Profile Image"
+                class="rounded-circle"
+                style="width: 100px; height: 100px; object-fit: cover"
+              />
+            </div>
+            <div>
+              <h3>{{ profileData?.name || "slim Riahi" }}</h3>
+              <p class="mb-1">{{ profileData?.profession || "Plomberie" }}</p>
+              <p class="mb-1">
+                <span class="badge bg-secondary">
+                  <i class="bi bi-check-circle-fill me-1"></i> Identité Vérifiée
+                </span>
+              </p>
+              <p class="mb-1">
+                <i class="bi bi-geo-alt-fill me-1"></i>
+                {{ profileData?.location || "El Mourouj 6, null" }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row text-center">
+            <div class="col-3">
+              <h4>{{ profileData?.stats?.messages || 1 }}</h4>
+              <p class="text-muted small">Messages</p>
+            </div>
+            <div class="col-3">
+              <h4>{{ profileData?.stats?.views || 112 }}</h4>
+              <p class="text-muted small">Vues Profil</p>
+            </div>
+            <div class="col-3">
+              <h4>{{ profileData?.stats?.notes || 7 }}</h4>
+              <p class="text-muted small">Notes</p>
+            </div>
+            <div class="col-3">
+              <h4>{{ profileData?.stats?.calls || 35 }}</h4>
+              <p class="text-muted small">Appels</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div
+          class="card-body d-flex justify-content-between align-items-center"
+        >
+          <h4 class="mb-0">Contactez moi!</h4>
+          <button class="btn btn-warning" (click)="showPhoneNumber()">
+            Afficher le numéro
+          </button>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4 class="mb-3">Photos</h4>
+          <div *ngIf="profileData?.photos?.length" class="mb-4">
+            <div class="main-photo mb-3">
+              <img
+                [src]="selectedPhoto || profileData?.photos?.[0]"
+                class="img-fluid rounded"
+                alt="Plumbing Work"
+              />
+            </div>
+            <div class="row g-2">
+              <div
+                *ngFor="let photo of profileData?.photos; let i = index"
+                class="col-2"
+              >
+                <img
+                  [src]="photo"
+                  class="img-fluid thumbnail rounded cursor-pointer"
+                  alt="Thumbnail"
+                  (click)="selectPhoto(photo)"
+                  [ngClass]="{ 'active-thumbnail': selectedPhoto === photo }"
+                />
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!profileData?.photos?.length" class="text-center py-4">
+            <i class="bi bi-camera text-muted" style="font-size: 2rem"></i>
+            <p class="text-muted">Aucune photo disponible</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4 class="mb-3">Description</h4>
+          <p>
+            {{
+              profileData?.description?.line1 ||
+                "Dépannage, entretien, installation"
+            }}
+          </p>
+          <p>
+            {{
+              profileData?.description?.line2 ||
+                "Plomberie, chauffage central, climatisation"
+            }}
+          </p>
+          <p>
+            {{
+              profileData?.description?.line3 || "Service rapide et motorisé"
+            }}
+          </p>
+          <p>{{ profileData?.description?.line4 || "7j/7j 24h/24h" }}</p>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4 class="mb-3">Autres Services</h4>
+          <div class="d-flex flex-wrap gap-2">
+            <span
+              *ngFor="let service of profileData?.services"
+              class="badge bg-light text-dark p-2"
+            >
+              <i [class]="service.icon"></i> {{ service.name }}
+            </span>
+            <span
+              *ngIf="!profileData?.services?.length"
+              class="badge bg-light text-dark p-2"
+            >
+              <i class="bi bi-tools"></i> Plomberie
+            </span>
+            <span
+              *ngIf="!profileData?.services?.length"
+              class="badge bg-light text-dark p-2"
+            >
+              <i class="bi bi-screwdriver"></i> Bricolage et montage
+            </span>
+            <span
+              *ngIf="!profileData?.services?.length"
+              class="badge bg-light text-dark p-2"
+            >
+              <i class="bi bi-snow"></i> Climatisation
+            </span>
+            <span
+              *ngIf="!profileData?.services?.length"
+              class="badge bg-light text-dark p-2"
+            >
+              <i class="bi bi-washing-machine"></i> Machine à laver
+            </span>
+            <span
+              *ngIf="!profileData?.services?.length"
+              class="badge bg-light text-dark p-2"
+            >
+              <i class="bi bi-fire"></i> Chauffage & chauffe-eau
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4 class="mb-3">Qualification</h4>
+          <div class="d-flex justify-content-between mb-2">
+            <div>
+              <i class="bi bi-briefcase-fill me-2"></i>
+              Work Experience:
+            </div>
+            <div>{{ profileData?.qualification?.experience || "+10 Ans" }}</div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div>
+              <i class="bi bi-award-fill me-2"></i>
+              Certification:
+            </div>
+            <div>
+              {{
+                profileData?.qualification?.certification ||
+                  "Technicien Profisionnel"
+              }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column - Reviews -->
+    <div class="col-lg-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4 class="mb-3">Avis clients</h4>
+          <div class="text-center mb-3">
+            <h2>{{ profileData?.rating?.average || 5 }}</h2>
+            <div class="star-rating mb-2">
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star text-warning"></i>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <span>Politesse</span>
+              <span>{{ profileData?.rating?.politesse || "5.0" }}</span>
+            </div>
+            <div class="progress" style="height: 10px">
+              <div
+                class="progress-bar bg-warning"
+                role="progressbar"
+                [style.width]="
+                  getRatingPercentage(profileData?.rating?.politesse || 5)
+                "
+                aria-valuenow="5"
+                aria-valuemin="0"
+                aria-valuemax="5"
+              ></div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <span>Qualité</span>
+              <span>{{ profileData?.rating?.qualite || "5.0" }}</span>
+            </div>
+            <div class="progress" style="height: 10px">
+              <div
+                class="progress-bar bg-warning"
+                role="progressbar"
+                [style.width]="
+                  getRatingPercentage(profileData?.rating?.qualite || 5)
+                "
+                aria-valuenow="5"
+                aria-valuemin="0"
+                aria-valuemax="5"
+              ></div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <span>Coût</span>
+              <span>{{ profileData?.rating?.cout || "4.71" }}</span>
+            </div>
+            <div class="progress" style="height: 10px">
+              <div
+                class="progress-bar bg-warning"
+                role="progressbar"
+                [style.width]="
+                  getRatingPercentage(profileData?.rating?.cout || 4.71)
+                "
+                aria-valuenow="4.71"
+                aria-valuemin="0"
+                aria-valuemax="5"
+              ></div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <span>Ponctualité</span>
+              <span>{{ profileData?.rating?.ponctualite || "5.0" }}</span>
+            </div>
+            <div class="progress" style="height: 10px">
+              <div
+                class="progress-bar bg-warning"
+                role="progressbar"
+                [style.width]="
+                  getRatingPercentage(profileData?.rating?.ponctualite || 5)
+                "
+                aria-valuenow="5"
+                aria-valuemin="0"
+                aria-valuemax="5"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews -->
+      <div *ngFor="let review of reviews" class="card mb-3">
+        <div class="card-body">
+          <div class="d-flex mb-2">
+            <div class="me-2">
+              <img
+                [src]="review.userImage || 'assets/placeholder.png'"
+                alt="User"
+                class="rounded-circle"
+                style="width: 40px; height: 40px; object-fit: cover"
+              />
+            </div>
+            <div>
+              <div class="d-flex align-items-center">
+                <h5 class="mb-0 me-2">{{ review.userName }}</h5>
+                <span *ngIf="review.verified" class="badge bg-success"
+                  >Vérifié</span
+                >
+              </div>
+              <div class="text-warning">
+                <i class="bi bi-star-fill"></i>
+                <span class="ms-1">{{ review.rating }}</span>
+              </div>
+            </div>
+          </div>
+          <p>{{ review.comment }}</p>
+          <p class="text-muted small">{{ review.date }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Découvrez plus section -->
+  <div class="mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h4>Découvrez plus</h4>
+      <div>
+        <button class="btn btn-sm btn-light me-2" id="prevBtn">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="btn btn-sm btn-warning" id="nextBtn">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div *ngFor="let pro of relatedPros" class="col-md-4 mb-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="d-flex mb-3">
+              <img
+                [src]="pro.image || 'assets/placeholder.png'"
+                alt="Professional"
+                class="rounded-circle me-3"
+                style="width: 60px; height: 60px; object-fit: cover"
+              />
+              <div>
+                <div class="d-flex align-items-center">
+                  <h5 class="mb-0 me-2">{{ pro.name }}</h5>
+                  <i
+                    *ngIf="pro.verified"
+                    class="bi bi-patch-check-fill text-primary"
+                  ></i>
+                </div>
+                <p class="mb-1">{{ pro.distance }} KM</p>
+                <div class="text-warning">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <span class="ms-1">{{ pro.rating }}</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="pro.quote" class="border-top pt-2">
+              <p class="mb-1">
+                <i class="bi bi-quote me-1"></i>{{ pro.quote }}
+              </p>
+              <p class="text-end mb-0 small">- {{ pro.quoteAuthor }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

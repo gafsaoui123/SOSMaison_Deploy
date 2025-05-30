@@ -1,0 +1,24 @@
+<div class="dialog-container">
+  <div class="dialog-header d-flex align-items-center gap-2">
+    <mat-icon color="warn">warning</mat-icon>
+    <h2 class="m-0">Confirmation</h2>
+  </div>
+
+  <div mat-dialog-content class="dialog-content mt-3">
+    <p class="text-secondary fs-6">{{ data.message }}</p>
+  </div>
+
+  <div mat-dialog-actions class="dialog-actions mt-4 justify-content-end">
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="onCancel()"
+      class="me-2"
+    >
+      Annuler
+    </button>
+    <button mat-flat-button color="warn" (click)="onConfirm()">
+      Supprimer
+    </button>
+  </div>
+</div>

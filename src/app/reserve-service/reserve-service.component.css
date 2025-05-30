@@ -1,0 +1,17 @@
+.card {
+  border-radius: 1rem;
+  background-color: #f8f9fa;
+}
+
+.form-label {
+  font-weight: 500;
+}
+
+input.form-control {
+  border-radius: 0.5rem;
+}
+
+button.btn {
+  border-radius: 0.5rem;
+  font-weight: bold;
+}

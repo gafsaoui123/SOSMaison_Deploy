@@ -1,0 +1,355 @@
+<div class="container page-wrapper">
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+      <li class="breadcrumb-item"><a href="#">Trouver Un Pro</a></li>
+      <li class="breadcrumb-item active">{{ product.productCategory }}</li>
+      <li class="breadcrumb-item active">
+        Profile De {{ product.productName }}
+      </li>
+    </ol>
+  </nav>
+
+  <div class="row">
+    <!-- Main Content -->
+    <div class="col-md-8">
+      <!-- Profile Card -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="d-flex">
+            <div class="profile-img-container me-3">
+              <img
+                [src]="
+                  product.productImages && product.productImages.length > 0
+                    ? product.productImages[0].url
+                    : '/placeholder.svg?height=80&width=80'
+                "
+                alt="{{ product.productName }}"
+                class="profile-img"
+              />
+            </div>
+            <div>
+              <h4 class="mb-0">
+                {{ product.productName }}
+              </h4>
+              <p class="text-muted mb-1">{{ product.productCategory }}</p>
+              <span class="badge bg-primary"
+                ><i class="bi bi-patch-check-fill me-1"></i> Identité
+                Vérifiée</span
+              >
+              <p class="mt-2 mb-0">
+                <i class="bi bi-geo-alt-fill"></i> Tunisie, Tunis, El Manar
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Card -->
+      <div class="card mb-4">
+        <div class="card-body p-0">
+          <div class="row text-center m-0">
+            <div class="col-3 stats-box">
+              <h4>33</h4>
+              <p class="mb-0">Messages</p>
+            </div>
+            <div class="col-3 stats-box">
+              <h4>414</h4>
+              <p class="mb-0">Vues Profil</p>
+            </div>
+            <div class="col-3 stats-box">
+              <h4>17</h4>
+              <p class="mb-0">Notes</p>
+            </div>
+            <div class="col-3 stats-box">
+              <h4>177</h4>
+              <p class="mb-0">Appels</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Card -->
+      <div class="card mb-4">
+        <div
+          class="card-body d-flex justify-content-between align-items-center"
+        >
+          <h5 class="mb-0">Contactez moi!</h5>
+          <button
+            class="btn btn-warning"
+            (click)="recommender(product.productId!)"
+          >
+            <i class="bi bi-telephone-fill btn-primary me-2"></i>Recommander
+          </button>
+        </div>
+      </div>
+
+      <!-- Photos Card -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="mb-3">Photos</h5>
+          <div class="main-photo mb-3">
+            <img
+              [src]="
+                product.productImages && product.productImages.length > 0
+                  ? product.productImages[selectedProductIndex].url
+                  : '/placeholder.svg?height=300&width=450'
+              "
+              alt="Main photo"
+              class="img-fluid w-100"
+            />
+          </div>
+          <div class="row thumbnail-gallery">
+            <div
+              *ngFor="let image of product.productImages; let i = index"
+              class="col-2 mb-2"
+              (click)="changeIndex(i)"
+            >
+              <img
+                [src]="image.url"
+                alt="Thumbnail {{ i }}"
+                class="img-fluid thumbnail"
+              />
+            </div>
+            <!-- Placeholder thumbnails if no images -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Card -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="mb-3">Description</h5>
+          <p>{{ product.productDescription }}</p>
+        </div>
+      </div>
+
+      <!-- Other Services Card -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="mb-3">Autres Services</h5>
+          <div class="d-flex flex-wrap">
+            <span class="badge bg-light text-dark me-2 mb-2 p-2">
+              <i class="bi bi-droplet-fill me-1"></i>
+              {{ product.productCategory }}
+            </span>
+            <span class="badge bg-light text-dark me-2 mb-2 p-2">
+              <i class="bi bi-snow me-1"></i> Climatisation
+            </span>
+            <span class="badge bg-light text-dark me-2 mb-2 p-2">
+              <i class="bi bi-water me-1"></i> Machine à laver
+            </span>
+            <span class="badge bg-light text-dark me-2 mb-2 p-2">
+              <i class="bi bi-thermometer-snow me-1"></i> Réfrigérateur
+            </span>
+            <span class="badge bg-light text-dark me-2 mb-2 p-2">
+              <i class="bi bi-fire me-1"></i> Chauffage & chauffe-eau
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Qualification Card -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="mb-3">Qualification</h5>
+          <div class="row mb-2">
+            <div class="col-4">
+              <i class="bi bi-briefcase-fill me-2"></i> Work Experience:
+            </div>
+            <div class="col-8 text-end">+10 Ans</div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <i class="bi bi-award-fill me-2"></i> Certification:
+            </div>
+            <div class="col-8 text-end">
+              Technicien En Froid Commercial<br />
+              Et Climatisation
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-md-4">
+      <!-- Reviews Card -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="mb-3">Avis clients</h5>
+          <div class="text-center mb-3">
+            <div class="stars">
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star text-warning"></i>
+            </div>
+          </div>
+
+          <!-- Rating Bars -->
+          <div class="rating-item mb-2">
+            <div class="d-flex justify-content-between mb-1">
+              <span>Politesse</span>
+              <span>4.1</span>
+            </div>
+            <div class="progress" style="height: 8px">
+              <div
+                class="progress-bar bg-warning"
+                role="progressbar"
+                style="width: 82%"
+              ></div>
+            </div>
+          </div>
+
+          <div class="rating-item mb-2">
+            <div class="d-flex justify-content-between mb-1">
+              <span>Qualité</span>
+              <span>4.3</span>
+            </div>
+            <div class="progress" style="height: 8px">
+              <div
+                class="progress-bar bg-warning"
+                role="progressbar"
+                style="width: 86%"
+              ></div>
+            </div>
+          </div>
+
+          <div class="rating-item mb-2">
+            <div class="d-flex justify-content-between mb-1">
+              <span>Coût</span>
+              <span>3.7</span>
+            </div>
+            <div class="progress" style="height: 8px">
+              <div
+                class="progress-bar bg-warning"
+                role="progressbar"
+                style="width: 74%"
+              ></div>
+            </div>
+          </div>
+
+          <div class="rating-item mb-2">
+            <div class="d-flex justify-content-between mb-1">
+              <span>Ponctualité</span>
+              <span>4.0</span>
+            </div>
+            <div class="progress" style="height: 8px">
+              <div
+                class="progress-bar bg-warning"
+                role="progressbar"
+                style="width: 80%"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews List -->
+      <div class="card">
+        <div class="card-body">
+          <!-- Review Item -->
+          <div class="review-item mb-3 pb-3 border-bottom">
+            <div class="d-flex">
+              <div class="review-avatar me-3">
+                <img
+                  [src]="product.productImages[0].url"
+                  alt="Avatar"
+                  class="rounded-circle"
+                />
+              </div>
+              <div>
+                <div class="d-flex justify-content-between">
+                  <h6 class="mb-0">Aziz</h6>
+                  <div>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <span class="ms-1">5</span>
+                  </div>
+                </div>
+                <p class="text-muted mb-1">très compétent et poli</p>
+                <p class="review-date mb-0">Tuesday, 9 May 2023</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review Item -->
+          <div class="review-item mb-3 pb-3 border-bottom">
+            <div class="d-flex">
+              <div class="review-avatar me-3">
+                <img
+                  src="/placeholder.svg?height=50&width=50"
+                  alt="Avatar"
+                  class="rounded-circle"
+                />
+              </div>
+              <div>
+                <div class="d-flex justify-content-between">
+                  <h6 class="mb-0">Hariz</h6>
+                  <div>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <span class="ms-1">3</span>
+                  </div>
+                </div>
+                <p class="review-date mb-0">Tuesday, 9 May 2023</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review Item -->
+          <div class="review-item mb-3 pb-3 border-bottom">
+            <div class="d-flex">
+              <div class="review-avatar me-3">
+                <img
+                  src="/placeholder.svg?height=50&width=50"
+                  alt="Avatar"
+                  class="rounded-circle"
+                />
+              </div>
+              <div>
+                <div class="d-flex justify-content-between">
+                  <h6 class="mb-0">Hamza</h6>
+                  <div>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <span class="ms-1">5</span>
+                  </div>
+                </div>
+                <p class="text-muted mb-1">travaillait vite</p>
+                <p class="review-date mb-0">Wednesday, 19 April 2023</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review Item with Verified Badge -->
+          <div class="review-item">
+            <div class="d-flex">
+              <div class="review-avatar me-3">
+                <img
+                  src="/placeholder.svg?height=50&width=50"
+                  alt="Avatar"
+                  class="rounded-circle"
+                />
+              </div>
+              <div>
+                <div class="d-flex justify-content-between">
+                  <h6 class="mb-0">
+                    Fedi <span class="badge bg-success ms-1">Vérifié</span>
+                  </h6>
+                  <div>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <span class="ms-1">5</span>
+                  </div>
+                </div>
+                <p class="review-date mb-0">Wednesday, 22 January 2023</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+<!-- End of Footer -->

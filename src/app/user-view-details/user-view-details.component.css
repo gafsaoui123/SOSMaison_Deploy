@@ -1,0 +1,99 @@
+:root {
+    --profile-gradient: linear-gradient(90deg, #41B8D5 0%, #2ED8E5 50%, #00D7DD 100%);
+  }
+  
+  .profile-header {
+    background: var(--profile-gradient);
+    padding: 20px;
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .breadcrumb {
+    background-color: transparent;
+  }
+  
+  .breadcrumb-item a {
+    color: #0078a8;
+  }
+  
+  .star-rating {
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+  
+  .thumbnail {
+    width: 100%;
+    height: 60px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  
+  .active-thumbnail {
+    border-color: #2ED8E5;
+  }
+  
+  .main-photo img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  
+  .badge {
+    font-weight: normal;
+  }
+  
+  /* Progress bar styling */
+  .progress {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+  }
+  
+  .progress-bar {
+    border-radius: 10px;
+    background-color: #2ED8E5;
+  }
+  
+  /* Card hover effects */
+  .card {
+    transition: all 0.2s;
+    border-radius: 10px;
+    border: 1px solid #eee;
+  }
+  
+  .card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-primary {
+    background: var(--profile-gradient);
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #2ED8E5;
+    filter: brightness(95%);
+  }
+  
+  .btn-warning {
+    background: var(--profile-gradient);
+    border: none;
+    color: white;
+  }
+  
+  .btn-warning:hover {
+    filter: brightness(95%);
+    color: white;
+  }
+  
+  .btn-light {
+    background-color: white;
+    border: 1px solid #eee;
+  }

@@ -1,0 +1,7 @@
+.main-content {
+  margin-top: 60px; /* Only needed when header is shown */
+}
+
+.no-header-margin {
+  margin-top: 0 !important;
+}
