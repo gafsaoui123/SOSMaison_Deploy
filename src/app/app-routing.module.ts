@@ -70,6 +70,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { roles: ['Admin'] },
   },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: 'reserveService',
     component: ReserveServiceComponent,

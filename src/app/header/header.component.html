@@ -4,7 +4,7 @@
       <a class="navbar-brand d-flex align-items-center" routerLink="/home">
         <img
           src="assets/logo1.png"
-          alt="SOS Maison Logo"
+          alt="Logo SOS Maison"
           style="height: 50px; margin-right: 10px"
         />
         <span class="fw-bold" style="font-size: 1.1rem">SOS Maison</span>
@@ -23,16 +23,18 @@
         <!--**********************************-->
         <ul *ngIf="isLoggedIn()" class="navbar-nav mx-auto">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/home">Home</a>
+            <a class="nav-link" routerLink="/home">Accueil</a>
           </li>
           <li class="nav-item">
             <a *ngIf="!isAdmin()" class="nav-link" href="#">Services</a>
           </li>
           <li class="nav-item">
-            <a *ngIf="!isAdmin()" class="nav-link" href="#">Providers</a>
+            <a *ngIf="!isAdmin()" class="nav-link" href="#">Prestataires</a>
           </li>
           <li class="nav-item">
-            <a *ngIf="!isAdmin()" class="nav-link" routerLink="/about">About</a>
+            <a *ngIf="!isAdmin()" class="nav-link" routerLink="/about"
+              >À propos</a
+            >
           </li>
           <li class="nav-item">
             <a *ngIf="isUser()" class="nav-link" href="#">Contact</a>
@@ -42,7 +44,7 @@
               class="nav-link"
               routerLink="/admin"
               *ngIf="userService.roleMatch(['Admin'])"
-              >AdminDash</a
+              >Tableau Admin</a
             >
           </li>
           <li class="nav-item">
@@ -50,12 +52,12 @@
               class="nav-link"
               routerLink="/addnewproduct"
               *ngIf="userService.roleMatch(['Admin'])"
-              >Add Services</a
+              >Ajouter un service</a
             >
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/showservice" *ngIf="isAdmin()"
-              >show service details</a
+              >Afficher les détails du service</a
             >
           </li>
           <li class="nav-item">
@@ -63,33 +65,33 @@
               class="nav-link"
               routerLink="/user"
               *ngIf="userService.roleMatch(['User'])"
-              >UserDash</a
+              >Tableau Utilisateur</a
             >
           </li>
         </ul>
         <!--**********************************-->
         <ul *ngIf="!isLoggedIn()" class="navbar-nav mx-auto">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/home">Home</a>
+            <a class="nav-link" routerLink="/home">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Providers</a>
+            <a class="nav-link" routerLink="/providers">Prestataires</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/about">About</a>
+            <a class="nav-link" routerLink="/about">À propos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" routerLink="/emergency">Contact</a>
           </li>
           <li class="nav-item">
             <a
               class="nav-link"
               routerLink="/admin"
               *ngIf="userService.roleMatch(['Admin'])"
-              >AdminDash</a
+              >Tableau Admin</a
             >
           </li>
           <li class="nav-item">
@@ -97,7 +99,7 @@
               class="nav-link"
               routerLink="/addnewproduct"
               *ngIf="userService.roleMatch(['Admin'])"
-              >Add Services</a
+              >Ajouter un service</a
             >
           </li>
           <li class="nav-item">
@@ -105,14 +107,14 @@
               class="nav-link"
               routerLink="/user"
               *ngIf="userService.roleMatch(['User'])"
-              >UserDash</a
+              >Tableau Utilisateur</a
             >
           </li>
         </ul>
         <!--**********************************-->
         <div class="d-flex">
           <a routerLink="/emergency" class="btn btn-outline-secondary me-2">
-            <i class="bi bi-telephone-fill"></i> Emergency
+            <i class="bi bi-telephone-fill"></i> Urgence
           </a>
 
           <button
@@ -121,7 +123,7 @@
             routerLink="/login"
             type="button"
           >
-            Get Started
+            Commencer
           </button>
           <button
             *ngIf="isLoggedIn()"
@@ -131,53 +133,10 @@
             (click)="logout()"
             routerLink="/home"
           >
-            Logout
+            Se déconnecter
           </button>
         </div>
       </div>
     </div>
   </nav>
 </div>
-
-<!--**********************************************************************-->
-<!--<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">SoSmaison</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/home"
-            >Home</a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/admin"
-            >AdminDash</a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/user"
-            >UserDash</a
-          >
-        </li>
-      </ul>
-      <button type="button" class="btn btn-success" routerLink="/login">
-        Login
-      </button>
-      <button type="button" class="btn btn-danger" routerLink="/home">
-        Logout
-      </button>
-    </div>
-  </div>
-</nav>-->

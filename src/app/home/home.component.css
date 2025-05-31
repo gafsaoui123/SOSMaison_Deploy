@@ -863,9 +863,10 @@ p {
 }
 
 .app-button {
-  background-color: white;
+  /* Supprimer le fond blanc et le padding */
+  background-color: transparent;
   border-radius: 8px;
-  padding: 10px 20px;
+  padding: 0;
   display: inline-block;
   transition: transform 0.3s ease;
 }
@@ -875,8 +876,10 @@ p {
 }
 
 .app-button img {
-  height: 36px;
+  height: 45px; /* un peu plus grand pour meilleure lisibilité */
+  display: block;
 }
+
 
 .app-image {
   flex: 0 0 auto;

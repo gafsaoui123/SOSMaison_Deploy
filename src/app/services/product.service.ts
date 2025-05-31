@@ -13,20 +13,20 @@ export class ProductService {
   constructor(private httpClient:HttpClient) {}
 
   public addProduct(product: FormData){
-    return this.httpClient.post<Product>("http://localhost:9090/addNewProduct", product);
+    return this.httpClient.post<Product>("https://backend-sos-maison.onrender.com/addNewProduct", product);
 
     }
 
   public getAllProducts(){
-    return this.httpClient.get<Product[]>("http://localhost:9090/getAllProducts");
+    return this.httpClient.get<Product[]>("https://backend-sos-maison.onrender.com/getAllProducts");
    }
 
   public deleteProduct(productId: number) {
-    return this.httpClient.delete("http://localhost:9090/deleteProductDetails/" + productId);
+    return this.httpClient.delete("https://backend-sos-maison.onrender.com/deleteProductDetails/" + productId);
   }
 
   public getProductDetailsById(productId: number) {
-    return this.httpClient.get<Product>("http://localhost:9090/getProductDetailsById/" + productId);
+    return this.httpClient.get<Product>("https://backend-sos-maison.onrender.com/getProductDetailsById/" + productId);
   }
 
   public getallprofessionals(): Observable<Professionals[]> {
@@ -34,10 +34,10 @@ export class ProductService {
   }
 
   public getProductDetails(isSingleProductCheckout: boolean, productId: number){
-    return this.httpClient.get<Product[]>("http://localhost:9090/getProductDetails/" + isSingleProductCheckout + "/" + productId);
+    return this.httpClient.get<Product[]>("https://backend-sos-maison.onrender.com/getProductDetails/" + isSingleProductCheckout + "/" + productId);
   }
     
   public placeOrder(orderDetails: OrderDetails) {
-    return this.httpClient.post("http://localhost:9090/placeOrder", orderDetails);
+    return this.httpClient.post("https://backend-sos-maison.onrender.com/placeOrder", orderDetails);
   }
 }

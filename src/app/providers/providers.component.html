@@ -1,21 +1,21 @@
 <section class="providers-page py-5">
   <div class="container">
     <div class="text-center mb-5">
-      <h1 class="fw-bold mb-3">Our Service Providers</h1>
+      <h1 class="fw-bold mb-3">Nos Prestataires de Services</h1>
       <p class="text-muted">
-        Find trusted and experienced professionals to help with your home
-        service needs.
+        Trouvez des professionnels fiables et expérimentés pour répondre à vos
+        besoins de services à domicile.
       </p>
     </div>
 
-    <!-- Search and Filter -->
+    <!-- Recherche et Filtrage -->
     <div class="row justify-content-center mb-5">
       <div class="col-md-10">
         <div class="d-flex flex-column flex-md-row gap-2">
           <input
             type="text"
             class="form-control"
-            placeholder="Search providers..."
+            placeholder="Rechercher des prestataires..."
             [(ngModel)]="searchTerm"
           />
           <select
@@ -31,15 +31,15 @@
             </option>
           </select>
           <button class="btn btn-primary px-4" (click)="searchProviders()">
-            Search
+            Rechercher
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Providers Grid -->
+    <!-- Grille des prestataires -->
     <div class="row">
-      <!-- Provider Card (ngFor loop) -->
+      <!-- Carte du prestataire (boucle ngFor) -->
       <div class="col-lg-4 col-md-6 mb-4" *ngFor="let provider of providers">
         <div class="provider-card p-4 h-100">
           <div class="d-flex align-items-center mb-3">
@@ -53,7 +53,7 @@
             <div>
               <div class="d-flex align-items-center">
                 <h5 class="mb-0 me-2">{{ provider.name }}</h5>
-                <span class="verified-badge">Verified</span>
+                <span class="verified-badge">Vérifié</span>
               </div>
               <p class="text-muted mb-0">{{ provider.location }}</p>
             </div>
@@ -74,30 +74,28 @@
                 ></i>
               </div>
               <span class="fw-bold">{{ provider.rating }}</span>
-              <span class="text-muted ms-1"
-                >({{ provider.reviews }} reviews)</span
-              >
+              <span class="text-muted ms-1">
+                ({{ provider.reviews }} avis)
+              </span>
             </div>
             <p>{{ provider.description }}</p>
           </div>
 
           <div class="service-tags mb-3">
-            <span
-              class="service-tag"
-              *ngFor="let service of provider.services"
-              >{{ service }}</span
-            >
+            <span class="service-tag" *ngFor="let service of provider.services">
+              {{ service }}
+            </span>
           </div>
 
           <div class="d-flex justify-content-between align-items-center">
-            <span class="text-muted"
-              >{{ provider.experience }} years experience</span
-            >
+            <span class="text-muted">
+              {{ provider.experience }} ans d'expérience
+            </span>
             <button
               class="btn btn-outline-primary btn-sm"
               (click)="contactProvider(provider.id)"
             >
-              Contact
+              Contacter
             </button>
           </div>
         </div>

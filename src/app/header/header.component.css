@@ -9,16 +9,86 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-  .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+/* Remove navbar fixed position here since .safehome-hero is fixed */
+.navbar {
   height: 60px; /* reduced height */
-  z-index: 999;
-  background-color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   padding: 0 1rem;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Brand image and text align and scale */
+.navbar-brand img {
+  height: 40px; /* smaller height for mobile */
+  margin-right: 8px;
+  transition: height 0.3s ease;
+}
+
+.navbar-brand span {
+  font-size: 1rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Navbar toggler button */
+.navbar-toggler {
+  border: none;
+}
+
+/* Navbar collapse padding */
+#navbarNav {
+  justify-content: flex-end; /* Align menu right on large screens */
+}
+
+/* Center nav links on larger screens */
+@media (min-width: 992px) {
+  .navbar-nav.mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 991px) {
+  .navbar-brand img {
+    height: 30px;
+  }
+  .navbar-brand span {
+    font-size: 0.9rem;
+  }
+
+  /* Make nav links full width inside the collapse */
+  #navbarNav .navbar-nav {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Button group stack vertically */
+  .d-flex {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 10px;
+  }
+
+  /* Make emergency button full width */
+  .d-flex > a.btn {
+    width: 100%;
+  }
+
+  /* Buttons full width */
+  .d-flex > button {
+    width: 100%;
+  }
+}
+
+/* Fix the navbar toggler icon color if needed */
+.navbar-toggler-icon {
+  filter: invert(0.4);
+}
+
+/* Add spacing for safehome-hero below fixed navbar */
+body {
+  padding-top: 60px; /* same as navbar height */
 }
