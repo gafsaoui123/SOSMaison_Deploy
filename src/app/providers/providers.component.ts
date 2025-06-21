@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProductService } from '../services/product.service';
+import { ImageProcessingService } from '../services/image-processing.service';
+import { map } from 'rxjs';
+import { Product } from '../_model/product.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 interface ServiceProvider {
   id: number;
@@ -18,6 +24,9 @@ interface ServiceProvider {
   styleUrls: ['./providers.component.css']
 })
 export class ProvidersComponent implements OnInit {
+  pageNumber: number = 0;
+  showLoadMoreButton: boolean = false;
+
  providers: ServiceProvider[] = [
   {
     id: 1,
@@ -108,12 +117,49 @@ export class ProvidersComponent implements OnInit {
 // Add this to both component classes
   Math: any = Math;
 
-  constructor() { }
+  constructor( private router: Router,
+      private productService: ProductService,
+      private imageProcessingServivce: ImageProcessingService) { }
 
   ngOnInit(): void {
+    this.getallProducts();
     // This is where you would typically fetch data from an API
     // this.loadProviders();
   }
+
+  contactProvider(productId: number): void {
+    console.log(`Contacter le prestataire avec ID : ${productId}`);
+    this.router.navigate(['/userViewMe', { productId: productId }]);
+  }
+
+  public loadMore() {
+    this.pageNumber++;
+    this.getallProducts();
+  }
+
+
+  products: Product[] = [];
+    public getallProducts() {
+      this.productService.getAllProducts(this.pageNumber)
+        .pipe(
+          map((x: Product[], i) => x.map((product: Product) => this.imageProcessingServivce.createImages(product)))
+        )
+        .subscribe(
+          (resp: Product[]) => {
+            if (resp.length ==9) {
+              this.showLoadMoreButton = true; // Hide button if less than 10 products
+            } else {
+              this.showLoadMoreButton = false; // Show button if 10 or more products
+            }
+            resp.forEach(p=>this.products.push(p));
+            
+            console.log('Produits chargés :', this.products);
+          },
+          (error: HttpErrorResponse) => {
+            console.error('Erreur lors de la récupération des produits :', error);
+          }
+        );
+    }
 
   // Method to search providers
   searchProviders(): void {
@@ -123,11 +169,7 @@ export class ProvidersComponent implements OnInit {
   }
 
   // Method to contact a provider
-  contactProvider(providerId: number): void {
-    console.log(`Contacting provider with ID: ${providerId}`);
-    // Implement your contact logic here
-  }
-
+  
   // This method would be used when implementing API calls
   // private loadProviders(): void {
   //   this.providerService.getAllProviders().subscribe(

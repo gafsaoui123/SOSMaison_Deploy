@@ -1,94 +1,207 @@
-.safehome-hero {
+/* Add this CSS to your component */
+.sos-header {
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 999;
-  background-color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-/* Remove navbar fixed position here since .safehome-hero is fixed */
 .navbar {
-  height: 60px; /* reduced height */
+  padding: 0.8rem 0;
+}
+
+.container {
   display: flex;
   align-items: center;
-  padding: 0 1rem;
-  background-color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  padding: 0 1.5rem;
 }
 
-/* Brand image and text align and scale */
-.navbar-brand img {
-  height: 40px; /* smaller height for mobile */
-  margin-right: 8px;
-  transition: height 0.3s ease;
+.brand-logo {
+  height: 45px;
+  margin-right: 12px;
+  transition: all 0.3s ease;
 }
 
-.navbar-brand span {
-  font-size: 1rem;
+.brand-name {
   font-weight: 700;
-  white-space: nowrap;
+  font-size: 1.4rem;
+  background: linear-gradient(90deg, #2d6ee0 0%, #4e54c8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
 }
 
-/* Navbar toggler button */
-.navbar-toggler {
+.nav-links {
+  margin: 0 auto;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: #2c3e50 !important;
+  position: relative;
+  padding: 0.5rem 0 !important;
+  transition: all 0.25s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #2d6ee0 0%, #4e54c8 100%);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: #2d6ee0 !important;
+  transform: translateY(-2px);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.emergency-btn {
+  background: transparent;
+  color: #e74c3c;
+  border: 2px solid #e74c3c;
+  border-radius: 50px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.emergency-btn:hover {
+  background: #e74c3c;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.25);
+}
+
+.primary-btn {
+  background: linear-gradient(90deg, #2d6ee0 0%, #4e54c8 100%);
+  color: white !important;
   border: none;
+  border-radius: 50px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(45, 110, 224, 0.3);
 }
 
-/* Navbar collapse padding */
-#navbarNav {
-  justify-content: flex-end; /* Align menu right on large screens */
+.primary-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(45, 110, 224, 0.4);
 }
 
-/* Center nav links on larger screens */
-@media (min-width: 992px) {
-  .navbar-nav.mx-auto {
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
+.logout-btn {
+  background: #f0f2f5;
+  color: #2c3e50 !important;
+  border: none;
+  border-radius: 50px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
-/* Responsive adjustments for small screens */
+.logout-btn:hover {
+  background: #e4e6e9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.user-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e0e7ff;
+  box-shadow: 0 2px 8px rgba(46, 91, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.user-icon:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(46, 91, 255, 0.15);
+}
+
+/* Responsive styles */
 @media (max-width: 991px) {
-  .navbar-brand img {
-    height: 30px;
+  .container {
+    padding: 0 1rem;
   }
-  .navbar-brand span {
-    font-size: 0.9rem;
+  
+  .brand-logo {
+    height: 40px;
   }
-
-  /* Make nav links full width inside the collapse */
-  #navbarNav .navbar-nav {
+  
+  .brand-name {
+    font-size: 1.3rem;
+  }
+  
+  .nav-links {
+    margin: 1.5rem 0;
+    gap: 0;
+  }
+  
+  .nav-item {
     width: 100%;
     text-align: center;
   }
-
-  /* Button group stack vertically */
-  .d-flex {
+  
+  .nav-link {
+    padding: 0.8rem 0 !important;
+    font-size: 1.1rem;
+  }
+  
+  .nav-actions {
     flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 10px;
-  }
-
-  /* Make emergency button full width */
-  .d-flex > a.btn {
     width: 100%;
+    gap: 1rem;
+    margin-top: 1rem;
   }
-
-  /* Buttons full width */
-  .d-flex > button {
+  
+  .emergency-btn, 
+  .primary-btn, 
+  .logout-btn {
     width: 100%;
+    justify-content: center;
+    padding: 0.8rem;
+  }
+  
+  .user-icon {
+    margin-top: 0.5rem;
   }
 }
 
-/* Fix the navbar toggler icon color if needed */
-.navbar-toggler-icon {
-  filter: invert(0.4);
-}
-
-/* Add spacing for safehome-hero below fixed navbar */
-body {
-  padding-top: 60px; /* same as navbar height */
+@media (max-width: 576px) {
+  .brand-name {
+    font-size: 1.2rem;
+  }
+  
+  .brand-logo {
+    height: 36px;
+  }
 }

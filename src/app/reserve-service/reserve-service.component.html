@@ -1,75 +1,184 @@
-<div class="container mt-5">
-  <div class="card p-4 shadow-lg border-0">
-    <div class="row">
-      <div class="col-md-6">
-        <form #orderForm="ngForm" (ngSubmit)="placeOrder(orderForm)">
-          <div class="mb-3">
-            <label for="fullName" class="form-label">Full Name</label>
+<div class="order-container">
+  <div class="order-card">
+    <div class="order-content">
+      <div class="order-form-section">
+        <form
+          #orderForm="ngForm"
+          (ngSubmit)="placeOrder(orderForm)"
+          class="order-form"
+        >
+          <h2 class="form-title">Détails de la commande</h2>
+          <p class="form-subtitle">Veuillez remplir vos informations</p>
+
+          <div class="form-group">
+            <label for="fullName" class="form-label">Nom complet</label>
             <input
               type="text"
-              class="form-control"
+              class="form-input"
               id="fullName"
               name="fullName"
-              placeholder="Enter your full name"
+              placeholder="Nom complet"
               [(ngModel)]="orderDetails.fullName"
               required
             />
+            <span class="input-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </span>
           </div>
 
-          <div class="mb-3">
-            <label for="fullAddress" class="form-label">Full Address</label>
+          <div class="form-group">
+            <label for="fullAddress" class="form-label">Adresse complète</label>
             <input
               type="text"
-              class="form-control"
+              class="form-input"
               id="fullAddress"
               name="fullAddress"
-              placeholder="Enter your address"
+              placeholder="Adresse complète"
               [(ngModel)]="orderDetails.fullAddress"
               required
             />
+            <span class="input-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </span>
           </div>
 
-          <div class="mb-3">
-            <label for="contactNumber" class="form-label">Contact Number</label>
-            <input
-              type="text"
-              class="form-control"
-              id="contactNumber"
-              name="contactNumber"
-              placeholder="Enter contact number"
-              [(ngModel)]="orderDetails.contactNumber"
-              required
-            />
-          </div>
-
-          <div class="mb-4">
-            <label for="alternateContactNumber" class="form-label"
-              >Alternate Contact Number</label
+          <div class="form-group">
+            <label for="contactNumber" class="form-label"
+              >Numéro de contact</label
             >
             <input
               type="text"
-              class="form-control"
-              id="alternateContactNumber"
-              name="alternateContactNumber"
-              placeholder="Enter alternate contact"
-              [(ngModel)]="orderDetails.alternateContactNumber"
+              class="form-input"
+              id="contactNumber"
+              name="contactNumber"
+              placeholder="+216 55 555 555"
+              [(ngModel)]="orderDetails.contactNumber"
+              required
             />
+            <span class="input-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                ></path>
+              </svg>
+            </span>
           </div>
 
-          <div class="text-end">
-            <button type="submit" class="btn btn-primary px-4">
-              Place Order
-            </button>
+          <div class="form-group">
+            <label for="alternateContactNumber" class="form-label"
+              >Numéro de contact alternatif (facultatif)</label
+            >
+            <input
+              type="text"
+              class="form-input"
+              id="alternateContactNumber"
+              name="alternateContactNumber"
+              placeholder="+216 55 555 555"
+              [(ngModel)]="orderDetails.alternateContactNumber"
+            />
+            <span class="input-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                ></path>
+              </svg>
+            </span>
           </div>
+
+          <button
+            type="submit"
+            class="submit-button"
+            [disabled]="orderForm.invalid"
+          >
+            <span>Passer la commande</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
         </form>
       </div>
 
-      <div
-        class="col-md-6 d-flex align-items-center justify-content-center text-center"
-      >
-        <p class="text-muted">
-          Need help with services? Fill in your details and we'll reach out!
-        </p>
+      <div class="order-help-section">
+        <div class="help-content">
+          <div class="help-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </div>
+          <h3 class="help-title">Réservez ce professionnel</h3>
+          <p class="help-text">
+            Remplissez vos coordonnées et notre équipe vous contactera sous peu
+            pour vous aider avec votre reservation.
+          </p>
+        </div>
       </div>
     </div>
   </div>

@@ -16,7 +16,7 @@ export class UserViewMeComponent implements OnInit {
 
   selectedProductIndex = 0;
   
-  professionals: Professionals[] = [];
+  //professionals: Professionals[] = [];
  
   product: Product = {
     productCategory: "",
@@ -31,22 +31,22 @@ export class UserViewMeComponent implements OnInit {
   ngOnInit(): void {
     this.product = this.activatedRoute.snapshot.data['product'];
     console.log(this.product);
-   this.getallprofessionals();
+   //this.getallprofessionals();
   }
 
   constructor(private activatedRoute: ActivatedRoute, private prof:ProductService, private router: Router) { }
 
-  getallprofessionals(): void {
-    this.prof.getallprofessionals().subscribe({
-      next: (data: Professionals[]) => {
-        this.professionals = data;
-        console.log(this.professionals);
-      },
-      error: (error: any) => {
-        console.error('Error fetching professionals:', error);
-      }
-    });
-  }
+  //getallprofessionals(): void {
+   // this.prof.getallprofessionals().subscribe({
+    //  next: (data: Professionals[]) => {
+      //  this.professionals = data;
+       // console.log(this.professionals);
+    //  },
+     // error: (error: any) => {
+      //  console.error('Error fetching professionals:', error);
+    //  }
+   // });
+  //}
   // Other methods and properties can be added here as needed
 
   changeIndex(index: number) {
@@ -61,3 +61,4 @@ export class UserViewMeComponent implements OnInit {
   }
 
 }
+

@@ -19,6 +19,10 @@ import { ReserveServiceComponent } from './reserve-service/reserve-service.compo
 import { ReserveServiceService } from './services/reserve-service.service';
 import { RegisterComponent } from './register/register.component';
 import { EmergencyComponent } from './emergency/emergency.component';
+import { ChatComponent } from './chat/chat.component';
+import { PaymentComponent } from './payment/payment.component';
+import { PrestataireComponent } from './prestataire/prestataire.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -28,6 +32,15 @@ const routes: Routes = [
     component: AdminComponent,
     canActivate: [AuthGuard],
     data: { roles: ['Admin'] },
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'addnewproduct', component: AddNewProductComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] },resolve: {
+      product: ProductsResolverService,
+    } },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+      { path: 'showservice', component: ShowServiceDetailsComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+      { path: 'test', component: TestComponent },
+    ]
   },
   {
     path: 'user',
@@ -58,7 +71,17 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
     
+  },{
+    path: 'chat',
+    component: ChatComponent,
+    
   },
+  {
+    path: 'payment',
+    component: PaymentComponent,
+
+  },
+  { path: 'prestataire', component: PrestataireComponent },
   {
     path: 'emergency',
     component: EmergencyComponent,
@@ -83,7 +106,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    anchorScrolling: 'enabled',
+    scrollPositionRestoration: 'enabled'
+  })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

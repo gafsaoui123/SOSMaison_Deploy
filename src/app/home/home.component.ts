@@ -125,7 +125,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getallProducts();
+    this.get3Products();
 
     this.services = [
       {
@@ -135,9 +135,9 @@ export class HomeComponent implements OnInit {
         description: "Plombiers experts pour réparations, installations et urgences. Nous répondons à tous vos besoins en plomberie.",
         rating: 4.8,
         reviews: 156,
-        priceRange: "50€-150€/h",
-        image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-        iconClass: "fa-wrench",
+        priceRange: "50dt-150dt/h",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA7TF0ifsTC1D0hygKoaraJvKP0GU7ip-r-Q&s",
+        iconClass: "https://icones.pro/wp-content/uploads/2022/02/icone-de-service-orange.png",
         icon: ''
       },
       {
@@ -147,9 +147,9 @@ export class HomeComponent implements OnInit {
         description: "Électriciens certifiés pour tous vos besoins : câblage, installations, rénovations.",
         rating: 4.7,
         reviews: 142,
-        priceRange: "60€-180€/h",
+        priceRange: "60dt-180dt/h",
         image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-        iconClass: "fa-bolt",
+        iconClass: "https://static.vecteezy.com/ti/vecteur-libre/p1/579208-vecteur-de-foudre-icones-flash-power-gratuit-vectoriel.jpg",
         icon: ''
       },
       {
@@ -159,23 +159,24 @@ export class HomeComponent implements OnInit {
         description: "Service de nettoyage professionnel pour un intérieur impeccable. Programmes de nettoyage régulier disponibles.",
         rating: 4.9,
         reviews: 203,
-        priceRange: "25€-45€/h",
+        priceRange: "25dt-45dt/h",
         image: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-        iconClass: "fa-star",
+        iconClass: "https://static.vecteezy.com/ti/vecteur-libre/p1/27680564-maison-nettoyage-logo-sur-lettre-o-concept-avec-nettoyer-brosse-icone-femme-de-menage-un-service-symbole-vectoriel.jpg",
         icon: ''
       },
       {
         id: 4,
-        name: "Services de menuiserie",
-        category: "Construction",
-        description: "Menuisiers qualifiés pour assemblage, réparations et créations sur mesure en bois.",
+        name: "Services de jardinage",
+        category: "Jardinage",
+        description: "Jardinage professionnel pour l'entretien de votre espace extérieur. Services de tonte, taille et aménagement paysager.",
         rating: 4.6,
         reviews: 98,
-        priceRange: "45€-120€/h",
-        image: "https://images.unsplash.com/photo-1567361808960-dec9cb578182?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-        iconClass: "fa-hammer",
+        priceRange: "45dt-120dt/h",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4GPrLt7rar6P4T6HfW3k9WemkB20y7unNrQ&s",
+        iconClass: "https://us.123rf.com/450wm/surfupvector/surfupvector2212/surfupvector221200498/195550697-arrosoir-illustration-vectorielle-outil-agricole-et-arrosoir-isol%C3%A9-sur-fond-blanc-concept-de.jpg?ver=6",
         icon: ''
       }
+      
     ];
   }
 
@@ -197,8 +198,8 @@ export class HomeComponent implements OnInit {
 
   products: Product[] = [];
 
-  public getallProducts() {
-    this.productService.getAllProducts()
+  public get3Products() {
+    this.productService.get3Products(0)
       .pipe(
         map((x: Product[], i) => x.map((product: Product) => this.imageProcessingServivce.createImages(product)))
       )
@@ -211,5 +212,24 @@ export class HomeComponent implements OnInit {
           console.error('Erreur lors de la récupération des produits :', error);
         }
       );
+  }
+
+  isProfileModalVisible: boolean = false;
+
+  openProfileModal() {
+    this.isProfileModalVisible = true;
+  }
+
+  closeProfileModal() {
+    this.isProfileModalVisible = false;
+  }
+
+  toggleProfileModal() {
+    this.isProfileModalVisible = !this.isProfileModalVisible;
+  }
+
+  redirectToWhatsApp() {
+    this.closeProfileModal();
+    window.open('https://wa.me/21693025897?text=Bonjour%2C%20je%20suis%20l%27administrateur%20du%20site.%20N%27h%C3%A9sitez%20pas%20%C3%A0%20me%20poser%20vos%20questions%20concernant%20nos%20services.', '_blank');
   }
 }

@@ -46,4 +46,11 @@ export class UserAuthService {
       return roles[0].roleName === 'User';
      }
 
+     public setUserImage(imageUrl: string): void {
+      localStorage.setItem('userImage', imageUrl);
+    }
+  
+    public getUserImage(): string | null {
+      return localStorage.getItem('userImage');
+    }
 }

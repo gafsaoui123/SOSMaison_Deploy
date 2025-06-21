@@ -1,80 +1,83 @@
-<div class="container">
-  <div class="card shadow-sm p-4 mb-5 bg-white rounded">
-    <h2 class="mb-4">Add New Product</h2>
+<div class="add-product-container">
+  <div class="add-product-card">
+    <div class="card-header">
+      <h2>Ajouter un Nouveau Prestataire</h2>
+    </div>
 
-    <form #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
-      <div class="row">
-        <div class="col-md-7">
-          <div class="mb-3">
-            <label for="productName" class="form-label">
-              Product Name <span class="text-danger">*</span>
+    <form
+      #productForm="ngForm"
+      (ngSubmit)="addProduct(productForm)"
+      class="product-form"
+    >
+      <div class="form-row">
+        <div class="form-column">
+          <div class="form-group">
+            <label for="productName">
+              Nom du Prestataire <span class="required">*</span>
             </label>
             <input
               [(ngModel)]="product.productName"
               name="productName"
               type="text"
-              class="form-control"
               id="productName"
-              placeholder="Enter product name"
+              placeholder="Entrez le nom du prestataire"
             />
           </div>
 
-          <div class="mb-3">
-            <label for="productDescription" class="form-label">
-              Product Description <span class="text-danger">*</span>
+          <div class="form-group">
+            <label for="productDescription">
+              Description du Prestataire <span class="required">*</span>
             </label>
             <textarea
               [(ngModel)]="product.productDescription"
               name="productDescription"
-              class="form-control"
               id="productDescription"
               rows="4"
-              placeholder="Enter product description"
-            ></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="productDescription" class="form-label">
-              Product Category <span class="text-danger">*</span>
-            </label>
-            <textarea
-              [(ngModel)]="product.productCategory"
-              name="productDescription"
-              class="form-control"
-              id="productDescription"
-              rows="4"
-              placeholder="Enter product description"
+              placeholder="Entrez la description du prestataire"
             ></textarea>
           </div>
 
-          <div class="row mb-4">
-            <div class="col-md-6">
-              <label for="regularPrice" class="form-label">
-                Product Actual Price <span class="text-danger">*</span>
+          <div class="form-group">
+            <label for="productCategory">
+              Catégorie du Prestataire <span class="required">*</span>
+            </label>
+            <select
+              [(ngModel)]="product.productCategory"
+              name="productCategory"
+              id="productCategory"
+            >
+              <option value="">Sélectionnez une catégorie</option>
+              <option *ngFor="let category of categories" [value]="category">
+                {{ category }}
+              </option>
+            </select>
+          </div>
+
+          <div class="price-row">
+            <div class="price-group">
+              <label for="regularPrice">
+                Prix Actuel <span class="required">*</span>
               </label>
-              <div class="input-group">
-                <span class="input-group-text">$</span>
+              <div class="input-with-icon">
+                <i class="fas fa-dollar-sign"></i>
                 <input
                   [(ngModel)]="product.productActualPrice"
                   name="productActualPrice"
                   type="number"
-                  class="form-control"
                   id="regularPrice"
                   placeholder="0.00"
                 />
               </div>
             </div>
 
-            <div class="col-md-6">
-              <label for="salePrice" class="form-label">
-                Product Discounted Price
-              </label>
-              <div class="input-group">
-                <span class="input-group-text">$</span>
+            <div class="price-group">
+              <label for="salePrice">Prix Réduit</label>
+              <div class="input-with-icon">
+                <i class="fas fa-dollar-sign"></i>
                 <input
                   [(ngModel)]="product.productDiscountedPrice"
                   name="productDiscountedPrice"
                   type="number"
-                  class="form-control"
                   id="salePrice"
                   placeholder="0.00"
                 />
@@ -82,61 +85,59 @@
             </div>
           </div>
 
-          <div class="d-flex justify-content-end mt-3">
-            <button type="button" class="btn btn-outline-secondary me-2">
-              <i class="bi bi-x"></i> Clear
+          <div class="form-actions">
+            <button type="button" class="btn-secondary">
+              <i class="fas fa-times"></i> Effacer
             </button>
-            <button *ngIf="isNewProduct" type="submit" class="btn btn-primary">
-              <i class="bi bi-plus"></i> Add Service
+            <button *ngIf="isNewProduct" type="submit" class="btn-primary">
+              <i class="fas fa-plus"></i> Ajouter Prestataire
             </button>
-            <button *ngIf="!isNewProduct" type="submit" class="btn btn-primary">
-              <i class="bi bi-plus"></i> Update Service
+            <button *ngIf="!isNewProduct" type="submit" class="btn-primary">
+              <i class="fas fa-save"></i> Mettre à Jour
             </button>
           </div>
         </div>
 
-        <!-- File Upload Box -->
-        <div class="col-md-5">
-          <div class="mb-3">
-            <div class="drag-area" appDrag (files)="filesDropped($event)">
-              <div class="text-center py-4">
-                <i class="fas fa-cloud-upload-alt fa-2x mb-2"></i>
-                <p>Glissez et déposez des images ici<br />ou</p>
-                <input
-                  type="file"
-                  #fileInput
-                  hidden
-                  accept="image/*"
-                  (change)="onFileSelected($event)"
-                />
+        <!-- File Upload Section -->
+        <div class="upload-column">
+          <div class="upload-area" appDrag (files)="filesDropped($event)">
+            <div class="upload-content">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Glissez et déposez des images ici</p>
+              <span>ou</span>
+              <input
+                type="file"
+                #fileInput
+                hidden
+                accept="image/*"
+                (change)="onFileSelected($event)"
+                multiple
+              />
+              <button
+                type="button"
+                class="btn-outline"
+                (click)="fileInput.click()"
+              >
+                Sélectionner des fichiers
+              </button>
+            </div>
+          </div>
+
+          <div class="image-previews" *ngIf="product.productImages.length > 0">
+            <h4>Images sélectionnées:</h4>
+            <div class="preview-grid">
+              <div
+                class="preview-item"
+                *ngFor="let file of product.productImages; let i = index"
+              >
+                <img [src]="file.url" />
                 <button
                   type="button"
-                  class="btn btn-outline-primary"
-                  (click)="fileInput.click()"
+                  class="remove-btn"
+                  (click)="removeImage(i)"
                 >
-                  Sélectionner des fichiers
+                  <i class="fas fa-times"></i>
                 </button>
-              </div>
-            </div>
-
-            <div class="mt-3" *ngIf="product.productImages.length > 0">
-              <h5>Images sélectionnées:</h5>
-              <div class="row">
-                <div
-                  class="col-md-4 mb-2"
-                  *ngFor="let file of product.productImages; let i = index"
-                >
-                  <div class="image-preview">
-                    <img [src]="file.url" class="img-fluid" />
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-danger remove-btn"
-                      (click)="removeImage(i)"
-                    >
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

@@ -1,355 +1,216 @@
-<div class="container page-wrapper">
-  <!-- Breadcrumb -->
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Accueil</a></li>
-      <li class="breadcrumb-item"><a href="#">Trouver Un Pro</a></li>
-      <li class="breadcrumb-item active">{{ product.productCategory }}</li>
-      <li class="breadcrumb-item active">
-        Profile De {{ product.productName }}
-      </li>
-    </ol>
-  </nav>
+<div class="profile-container">
+  <!-- Header Section -->
+  <div class="profile-header">
+    <div class="profile-info">
+      <div class="profile-avatar">
+        <img
+          [src]="
+            product.productImages && product.productImages.length > 0
+              ? product.productImages[0].url
+              : '/placeholder.svg?height=80&width=80'
+          "
+          alt="{{ product.productName }}"
+        />
+      </div>
+      <div class="profile-details">
+        <h1 class="profile-name">{{ product.productName }}</h1>
+        <p class="profile-profession">{{ product.productCategory }}</p>
+        <div class="profile-rating">
+          <div class="stars">
+            <span class="star filled">★</span>
+            <span class="star filled">★</span>
+            <span class="star filled">★</span>
+            <span class="star filled">★</span>
+            <span class="star half">★</span>
+          </div>
+          <span class="rating-score">4.8 (127 avis)</span>
+          <span class="experience">12 ans d'expérience</span>
+        </div>
+        <div class="profile-location">
+          <span class="location">📍 Tunis, Bardo</span>
+          <span class="availability">🕒 Disponible cette semaine</span>
+        </div>
+      </div>
+    </div>
+    <div class="profile-actions">
+      <a href="https://api.whatsapp.com/send?phone=21693025897" target="_blank">
+        <button class="btn btn-primary">📅 Réserver</button>
+      </a>
 
-  <div class="row">
+      <button class="btn btn-secondary" routerLink="/reserveService">
+        📞 Contacter
+      </button>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
     <!-- Main Content -->
-    <div class="col-md-8">
-      <!-- Profile Card -->
-      <div class="card mb-4">
-        <div class="card-body">
-          <div class="d-flex">
-            <div class="profile-img-container me-3">
+    <div class="main-content">
+      <!-- À propos Section -->
+      <div class="section about-section">
+        <h2>À propos</h2>
+        <p>
+          {{ product.productDescription }}
+        </p>
+      </div>
+
+      <!-- Services Section -->
+      <div class="section services-section">
+        <h2>Services proposés</h2>
+        <div class="services-tags">
+          <span class="service-tag">Réparation fuite</span>
+          <span class="service-tag">Installation sanitaire</span>
+          <span class="service-tag">Débouchage</span>
+          <span class="service-tag">Rénovation salle de bain</span>
+          <span class="service-tag">Dépannage urgence</span>
+        </div>
+      </div>
+
+      <!-- Gallery Section -->
+      <div class="section gallery-section">
+        <h2>📷 Galerie de réalisations</h2>
+        <div class="gallery-grid">
+          <div
+            class="gallery-item"
+            *ngFor="let image of product.productImages; let i = index"
+            (click)="changeIndex(i)"
+          >
+            <img
+              [src]="image.url"
+              alt="Réalisation {{ i + 1 }}"
+              class="img-fluid thumbnail"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews Section -->
+      <div class="section reviews-section">
+        <h2>⭐ Avis clients (127)</h2>
+        <div class="reviews-list">
+          <div class="review-item">
+            <div class="review-avatar">MD</div>
+            <div class="review-content">
+              <div class="review-header">
+                <span class="reviewer-name">Latifa Gafsi</span>
+                <span class="review-date">15 janvier 2024</span>
+              </div>
+              <div class="review-stars">
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+              </div>
+              <p class="review-text">
+                Excellent travail, très professionnel et ponctuel. Je recommande
+                vivement !
+              </p>
+            </div>
+          </div>
+
+          <div class="review-item">
+            <div class="review-avatar">
               <img
-                [src]="
-                  product.productImages && product.productImages.length > 0
-                    ? product.productImages[0].url
-                    : '/placeholder.svg?height=80&width=80'
-                "
-                alt="{{ product.productName }}"
-                class="profile-img"
+                src="https://static.vecteezy.com/ti/photos-gratuite/t1/7421470-bel-homme-barbu-gai-sourit-heureusement-habille-en-t-shirt-blanc-decontracte-etre-de-bonne-humeur-pose-sur-fond-bleu-avec-copie-espace-heureux-europeen-gars-avec-chaume-debout-interieur-gratuit-photo.jpg"
+                alt="Pierre Martin"
               />
             </div>
-            <div>
-              <h4 class="mb-0">
-                {{ product.productName }}
-              </h4>
-              <p class="text-muted mb-1">{{ product.productCategory }}</p>
-              <span class="badge bg-primary"
-                ><i class="bi bi-patch-check-fill me-1"></i> Identité
-                Vérifiée</span
-              >
-              <p class="mt-2 mb-0">
-                <i class="bi bi-geo-alt-fill"></i> Tunisie, Tunis, El Manar
+            <div class="review-content">
+              <div class="review-header">
+                <span class="reviewer-name">Ali Trabelsi</span>
+                <span class="review-date">10 janvier 2024</span>
+              </div>
+              <div class="review-stars">
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+              </div>
+              <p class="review-text">
+                Intervention rapide pour une fuite urgente. Travail de qualité
+                et tarif raisonnable.
+              </p>
+            </div>
+          </div>
+
+          <div class="review-item">
+            <div class="review-avatar">
+              <img
+                src="https://www.franceapprentissage.fr/wp-content/uploads/2024/05/femme-heureuse-epanouie-768x512.jpg"
+                alt="Sophie Laurent"
+              />
+            </div>
+            <div class="review-content">
+              <div class="review-header">
+                <span class="reviewer-name">Semia Jandoubi</span>
+                <span class="review-date">5 janvier 2024</span>
+              </div>
+              <div class="review-stars">
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+              </div>
+              <p class="review-text">
+                Très satisfaite de la rénovation de ma salle de bain. Résultat
+                impeccable !
               </p>
             </div>
           </div>
         </div>
+        <button class="btn btn-link">Voir tous les avis</button>
       </div>
 
-      <!-- Stats Card -->
-      <div class="card mb-4">
-        <div class="card-body p-0">
-          <div class="row text-center m-0">
-            <div class="col-3 stats-box">
-              <h4>33</h4>
-              <p class="mb-0">Messages</p>
-            </div>
-            <div class="col-3 stats-box">
-              <h4>414</h4>
-              <p class="mb-0">Vues Profil</p>
-            </div>
-            <div class="col-3 stats-box">
-              <h4>17</h4>
-              <p class="mb-0">Notes</p>
-            </div>
-            <div class="col-3 stats-box">
-              <h4>177</h4>
-              <p class="mb-0">Appels</p>
-            </div>
+      <!-- Certifications Section -->
+      <div class="section certifications-section">
+        <h2>Certifications</h2>
+        <div class="certifications-list">
+          <div class="certification-item">
+            <span class="check-icon">✅</span>
+            <span>Certification PGN</span>
           </div>
-        </div>
-      </div>
-
-      <!-- Contact Card -->
-      <div class="card mb-4">
-        <div
-          class="card-body d-flex justify-content-between align-items-center"
-        >
-          <h5 class="mb-0">Contactez moi!</h5>
-          <button
-            class="btn btn-warning"
-            (click)="recommender(product.productId!)"
-          >
-            <i class="bi bi-telephone-fill btn-primary me-2"></i>Recommander
-          </button>
-        </div>
-      </div>
-
-      <!-- Photos Card -->
-      <div class="card mb-4">
-        <div class="card-body">
-          <h5 class="mb-3">Photos</h5>
-          <div class="main-photo mb-3">
-            <img
-              [src]="
-                product.productImages && product.productImages.length > 0
-                  ? product.productImages[selectedProductIndex].url
-                  : '/placeholder.svg?height=300&width=450'
-              "
-              alt="Main photo"
-              class="img-fluid w-100"
-            />
+          <div class="certification-item">
+            <span class="check-icon">✅</span>
+            <span>Qualibat</span>
           </div>
-          <div class="row thumbnail-gallery">
-            <div
-              *ngFor="let image of product.productImages; let i = index"
-              class="col-2 mb-2"
-              (click)="changeIndex(i)"
-            >
-              <img
-                [src]="image.url"
-                alt="Thumbnail {{ i }}"
-                class="img-fluid thumbnail"
-              />
-            </div>
-            <!-- Placeholder thumbnails if no images -->
-          </div>
-        </div>
-      </div>
-
-      <!-- Description Card -->
-      <div class="card mb-4">
-        <div class="card-body">
-          <h5 class="mb-3">Description</h5>
-          <p>{{ product.productDescription }}</p>
-        </div>
-      </div>
-
-      <!-- Other Services Card -->
-      <div class="card mb-4">
-        <div class="card-body">
-          <h5 class="mb-3">Autres Services</h5>
-          <div class="d-flex flex-wrap">
-            <span class="badge bg-light text-dark me-2 mb-2 p-2">
-              <i class="bi bi-droplet-fill me-1"></i>
-              {{ product.productCategory }}
-            </span>
-            <span class="badge bg-light text-dark me-2 mb-2 p-2">
-              <i class="bi bi-snow me-1"></i> Climatisation
-            </span>
-            <span class="badge bg-light text-dark me-2 mb-2 p-2">
-              <i class="bi bi-water me-1"></i> Machine à laver
-            </span>
-            <span class="badge bg-light text-dark me-2 mb-2 p-2">
-              <i class="bi bi-thermometer-snow me-1"></i> Réfrigérateur
-            </span>
-            <span class="badge bg-light text-dark me-2 mb-2 p-2">
-              <i class="bi bi-fire me-1"></i> Chauffage & chauffe-eau
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Qualification Card -->
-      <div class="card mb-4">
-        <div class="card-body">
-          <h5 class="mb-3">Qualification</h5>
-          <div class="row mb-2">
-            <div class="col-4">
-              <i class="bi bi-briefcase-fill me-2"></i> Work Experience:
-            </div>
-            <div class="col-8 text-end">+10 Ans</div>
-          </div>
-          <div class="row">
-            <div class="col-4">
-              <i class="bi bi-award-fill me-2"></i> Certification:
-            </div>
-            <div class="col-8 text-end">
-              Technicien En Froid Commercial<br />
-              Et Climatisation
-            </div>
+          <div class="certification-item">
+            <span class="check-icon">✅</span>
+            <span>Assurance décennale</span>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Sidebar -->
-    <div class="col-md-4">
-      <!-- Reviews Card -->
-      <div class="card mb-4">
-        <div class="card-body">
-          <h5 class="mb-3">Avis clients</h5>
-          <div class="text-center mb-3">
-            <div class="stars">
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star text-warning"></i>
-            </div>
-          </div>
-
-          <!-- Rating Bars -->
-          <div class="rating-item mb-2">
-            <div class="d-flex justify-content-between mb-1">
-              <span>Politesse</span>
-              <span>4.1</span>
-            </div>
-            <div class="progress" style="height: 8px">
-              <div
-                class="progress-bar bg-warning"
-                role="progressbar"
-                style="width: 82%"
-              ></div>
-            </div>
-          </div>
-
-          <div class="rating-item mb-2">
-            <div class="d-flex justify-content-between mb-1">
-              <span>Qualité</span>
-              <span>4.3</span>
-            </div>
-            <div class="progress" style="height: 8px">
-              <div
-                class="progress-bar bg-warning"
-                role="progressbar"
-                style="width: 86%"
-              ></div>
-            </div>
-          </div>
-
-          <div class="rating-item mb-2">
-            <div class="d-flex justify-content-between mb-1">
-              <span>Coût</span>
-              <span>3.7</span>
-            </div>
-            <div class="progress" style="height: 8px">
-              <div
-                class="progress-bar bg-warning"
-                role="progressbar"
-                style="width: 74%"
-              ></div>
-            </div>
-          </div>
-
-          <div class="rating-item mb-2">
-            <div class="d-flex justify-content-between mb-1">
-              <span>Ponctualité</span>
-              <span>4.0</span>
-            </div>
-            <div class="progress" style="height: 8px">
-              <div
-                class="progress-bar bg-warning"
-                role="progressbar"
-                style="width: 80%"
-              ></div>
-            </div>
-          </div>
+    <div class="sidebar">
+      <!-- Pricing Card -->
+      <div class="pricing-card">
+        <h3>💰 Tarification</h3>
+        <div class="price">
+          <span class="price-amount">35DT</span>
+          <span class="price-unit">par heure</span>
         </div>
+        <!-- <button class="btn btn-primary btn-full">📅 Réserver maintenant</button> -->
       </div>
 
-      <!-- Reviews List -->
-      <div class="card">
-        <div class="card-body">
-          <!-- Review Item -->
-          <div class="review-item mb-3 pb-3 border-bottom">
-            <div class="d-flex">
-              <div class="review-avatar me-3">
-                <img
-                  [src]="product.productImages[0].url"
-                  alt="Avatar"
-                  class="rounded-circle"
-                />
-              </div>
-              <div>
-                <div class="d-flex justify-content-between">
-                  <h6 class="mb-0">Aziz</h6>
-                  <div>
-                    <i class="bi bi-star-fill text-warning"></i>
-                    <span class="ms-1">5</span>
-                  </div>
-                </div>
-                <p class="text-muted mb-1">très compétent et poli</p>
-                <p class="review-date mb-0">Tuesday, 9 May 2023</p>
-              </div>
-            </div>
+      <!-- Contact Card -->
+      <div class="contact-card">
+        <h3>Contact</h3>
+        <div class="contact-info">
+          <div class="contact-item">
+            <span class="contact-icon">📞</span>
+            <span>+216 55 658 123</span>
           </div>
-
-          <!-- Review Item -->
-          <div class="review-item mb-3 pb-3 border-bottom">
-            <div class="d-flex">
-              <div class="review-avatar me-3">
-                <img
-                  src="/placeholder.svg?height=50&width=50"
-                  alt="Avatar"
-                  class="rounded-circle"
-                />
-              </div>
-              <div>
-                <div class="d-flex justify-content-between">
-                  <h6 class="mb-0">Hariz</h6>
-                  <div>
-                    <i class="bi bi-star-fill text-warning"></i>
-                    <span class="ms-1">3</span>
-                  </div>
-                </div>
-                <p class="review-date mb-0">Tuesday, 9 May 2023</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Review Item -->
-          <div class="review-item mb-3 pb-3 border-bottom">
-            <div class="d-flex">
-              <div class="review-avatar me-3">
-                <img
-                  src="/placeholder.svg?height=50&width=50"
-                  alt="Avatar"
-                  class="rounded-circle"
-                />
-              </div>
-              <div>
-                <div class="d-flex justify-content-between">
-                  <h6 class="mb-0">Hamza</h6>
-                  <div>
-                    <i class="bi bi-star-fill text-warning"></i>
-                    <span class="ms-1">5</span>
-                  </div>
-                </div>
-                <p class="text-muted mb-1">travaillait vite</p>
-                <p class="review-date mb-0">Wednesday, 19 April 2023</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Review Item with Verified Badge -->
-          <div class="review-item">
-            <div class="d-flex">
-              <div class="review-avatar me-3">
-                <img
-                  src="/placeholder.svg?height=50&width=50"
-                  alt="Avatar"
-                  class="rounded-circle"
-                />
-              </div>
-              <div>
-                <div class="d-flex justify-content-between">
-                  <h6 class="mb-0">
-                    Fedi <span class="badge bg-success ms-1">Vérifié</span>
-                  </h6>
-                  <div>
-                    <i class="bi bi-star-fill text-warning"></i>
-                    <span class="ms-1">5</span>
-                  </div>
-                </div>
-                <p class="review-date mb-0">Wednesday, 22 January 2023</p>
-              </div>
-            </div>
+          <div class="contact-item">
+            <span class="contact-icon">✉</span>
+            <span>jp.dupont.com</span>
           </div>
         </div>
       </div>
     </div>
+      
   </div>
 </div>
-<app-footer></app-footer>
-<!-- End of Footer -->

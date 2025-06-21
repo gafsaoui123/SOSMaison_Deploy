@@ -5,83 +5,97 @@ import { Observable } from 'rxjs';
 import { UserAuthService } from './user-auth.service';
 
 @Injectable({
-  providedIn: 'root' 
+  providedIn: 'root'
 })
 export class UserService {
+  PATH_OF_API = "https://backgafsaoui.onrender.com";
+  PATH_OF_API_LOCAL = "http://localhost:9090";
 
-  PATH_OF_API ="https://backend-sos-maison.onrender.com";
-  
-  requestHeader = new HttpHeaders(
-    {"NO-AUTH":"True"}
-  )
-  constructor(private httpclient: HttpClient, private userAuthService: UserAuthService) { }
+  requestHeader = new HttpHeaders({
+    "NO-AUTH": "True"
+  });
 
-
-  
-
+  constructor(private httpclient: HttpClient, private userAuthService: UserAuthService) {}
 
   public forUser() {
-    return this.httpclient.get(this.PATH_OF_API + '/forUser', {
+    return this.httpclient.get(this.PATH_OF_API_LOCAL + '/forUser', {
       responseType: 'text',
     });
   }
-
 
   public forAdmin() {
-    return this.httpclient.get(this.PATH_OF_API + '/forAdmin', {
+    return this.httpclient.get(this.PATH_OF_API_LOCAL + '/forAdmin', {
       responseType: 'text',
     });
   }
 
-  public login(loginData: { userName: string; userPassword: string }): Observable<any>{
-    return this.httpclient.post(this.PATH_OF_API + "/authenticate",loginData,{ headers: this.requestHeader});
+  public login(loginData: { userName: string; userPassword: string }): Observable<any> {
+    return this.httpclient.post(this.PATH_OF_API_LOCAL + "/authenticate", loginData, { headers: this.requestHeader });
   }
 
   public register(registerData: {
-  userName: string;
-  userFirstName: string;
-  userLastName: string;
-  userPhoneNumber: string;
-  userPassword: string;
-}): Observable<any> {
+    userName: string;
+    userFirstName: string;
+    userLastName: string;
+    userPhoneNumber: string;
+    userPassword: string;
+  }): Observable<any> {
+    return this.httpclient.post(this.PATH_OF_API_LOCAL + '/registerNewUser', registerData, {
+      headers: this.requestHeader
+    });
+  }
 
-  return this.httpclient.post(this.PATH_OF_API + '/registerNewUser', registerData, {
-    headers: this.requestHeader
+  public roleMatch(allowedRoles: any[]): boolean {
+    const userRoles: any[] = this.userAuthService.getRoles();
+    if (!userRoles || userRoles.length === 0) {
+      return false;
+    }
+    for (let i = 0; i < userRoles.length; i++) {
+      for (let j = 0; j < allowedRoles.length; j++) {
+        if (userRoles[i].roleName === allowedRoles[j]) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  public getUsersConnectedToday(): Observable<number> {
+    return this.httpclient.get<number>(this.PATH_OF_API_LOCAL + '/users/connected-today', {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  
+
+  public getUserConnections(): Observable<Record<string, number>> {
+    return this.httpclient.get<Record<string, number>>(`${this.PATH_OF_API_LOCAL}/users/connections`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  
+
+  public getUserCategories(): Observable<Record<string, number>> {
+  return this.httpclient.get<Record<string, number>>(`${this.PATH_OF_API_LOCAL}/users/categories`, {
+    headers: this.getAuthHeaders()
   });
 }
 
+  // user.service.ts (add this method)
+public getAllUsers(): Observable<any[]> {
+  return this.httpclient.get<any[]>(this.PATH_OF_API_LOCAL + '/users', {
+    headers: this.getAuthHeaders()
+  });
+}
 
-
-
-
-
-  
-  public roleMatch(allowedRoles: any[]): boolean {
-    // Retrieve user roles from the service
-    const userRoles: any[] = this.userAuthService.getRoles();
-    
-    // If there are no user roles, there's no match.
-    if (!userRoles || userRoles.length === 0) {
-    return false;
+  private getAuthHeaders(): HttpHeaders {
+    const token = this.userAuthService.getToken();
+    if (token) {
+      return new HttpHeaders({
+        "Authorization": `Bearer ${token}`
+      });
     }
-    
-    // Loop through each user role and check against allowedRoles.
-    for (let i = 0; i < userRoles.length; i++) {
-    for (let j = 0; j < allowedRoles.length; j++) {
-    if (userRoles[i].roleName === allowedRoles[j]) {
-    return true; // A matching role is found.
-    }
-    }
-    }
-    
-    // No match was found after checking all roles.
-    return false;
-    }
-
-
-    
-
-
-
-
+    return this.requestHeader;
+  }
 }

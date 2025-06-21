@@ -1,3 +1,59 @@
-<div class="div">
-  <p>admin works</p>
+<!-- admin.component.html -->
+<div class="dashboard-container">
+  <!-- Sidezbar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <i class="fas fa-rocket"></i>
+        <span>AdminPanel</span>
+      </div>
+    </div>
+
+    <div class="sidebar-menu">
+      <div class="sidebar-title">Main Navigation</div>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            routerLink="/admin/dashboard"
+            routerLinkActive="active"
+          >
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/admin/addnewproduct"
+            routerLinkActive="active"
+          >
+            <i class="fas fa-plus-circle"></i>
+            <span>Ajouter </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/admin/showservice"
+            routerLinkActive="active"
+          >
+            <i class="fas fa-list-alt"></i>
+            <span>Liste des Prestataires</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="logout()">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Retour accueil</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
 </div>

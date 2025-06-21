@@ -14,7 +14,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AddNewProductComponent implements OnInit {
   isNewProduct =true;
-
+categories: string[] = [
+    'Plombier',
+    'Électricien',
+    
+    'Jardinier',
+    'Peintre',
+    'Menuisier',
+    'Serrurier',
+    'Chauffagiste',
+    'Nettoyage',
+    'Déménagement',
+  ];
 
   ngOnInit(): void {
     this.product = this.activatedRoute.snapshot.data['product'];

@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        const hiddenHeaderRoutes = ['/forbidden', '/login','/register','/emergency']; // Add other routes you want to hide the header on
+        const hiddenHeaderRoutes = ['/forbidden', '/login','/register','/emergency','/admin','/admin/dashboard','/admin/showservice','/admin/addnewproduct']; // Add other routes you want to hide the header on
         this.showHeader = !hiddenHeaderRoutes.includes(event.urlAfterRedirects);
       }
     });

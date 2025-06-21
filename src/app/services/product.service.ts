@@ -9,35 +9,41 @@ import { OrderDetails } from '../_model/order-details.model';
   providedIn: 'root'
 })
 export class ProductService {
-
+  PATH_OF_API ="https://backgafsaoui.onrender.com";
+  PATH_OF_API_LOCAL = "http://localhost:9090";
   constructor(private httpClient:HttpClient) {}
 
   public addProduct(product: FormData){
-    return this.httpClient.post<Product>("https://backend-sos-maison.onrender.com/addNewProduct", product);
+    return this.httpClient.post<Product>(`${this.PATH_OF_API_LOCAL}/addNewProduct`, product);
 
     }
 
-  public getAllProducts(){
-    return this.httpClient.get<Product[]>("https://backend-sos-maison.onrender.com/getAllProducts");
+  public getAllProducts(pageNumber: number){
+    return this.httpClient.get<Product[]>(`${this.PATH_OF_API_LOCAL}/getAllProducts?pageNumber=`+ pageNumber);
+   }
+
+   public get3Products(pageNumber: number){
+    return this.httpClient.get<Product[]>(`${this.PATH_OF_API_LOCAL}/get3Products?pageNumber=`+ pageNumber);
    }
 
   public deleteProduct(productId: number) {
-    return this.httpClient.delete("https://backend-sos-maison.onrender.com/deleteProductDetails/" + productId);
+    return this.httpClient.delete(`${this.PATH_OF_API_LOCAL}/deleteProductDetails/${productId}`);
   }
 
   public getProductDetailsById(productId: number) {
-    return this.httpClient.get<Product>("https://backend-sos-maison.onrender.com/getProductDetailsById/" + productId);
+    return this.httpClient.get<Product>(`${this.PATH_OF_API_LOCAL}/getProductDetailsById/${productId}`);
   }
 
-  public getallprofessionals(): Observable<Professionals[]> {
-    return this.httpClient.get<Professionals[]>("https://backend-backup-4.onrender.com/professionals");
-  }
+  // Récupère tous les professionnels depuis l'API locale
+ // public getallprofessionals(): Observable<Professionals[]> {
+    //return this.httpClient.get<Professionals[]>(`${this.PATH_OF_API_LOCAL}/professionals`);
+ // }
 
   public getProductDetails(isSingleProductCheckout: boolean, productId: number){
-    return this.httpClient.get<Product[]>("https://backend-sos-maison.onrender.com/getProductDetails/" + isSingleProductCheckout + "/" + productId);
+    return this.httpClient.get<Product[]>(`${this.PATH_OF_API_LOCAL}/getProductDetails/${isSingleProductCheckout}/${productId}`);
   }
-    
+
   public placeOrder(orderDetails: OrderDetails) {
-    return this.httpClient.post("https://backend-sos-maison.onrender.com/placeOrder", orderDetails);
+    return this.httpClient.post(`${this.PATH_OF_API_LOCAL}/placeOrder`, orderDetails);
   }
 }

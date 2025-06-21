@@ -1,0 +1,153 @@
+<!-- Header -->
+<div class="header">
+  <div class="header-title">
+    <h1>Dashboard</h1>
+    <p>Welcome back, Admin! Here's what's happening today.</p>
+  </div>
+
+  <div class="header-actions">
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" />
+    </div>
+
+    <div class="user-profile">
+      <div class="user-avatar">AD</div>
+      <div class="user-info">
+        <div class="user-name">Admin User</div>
+        <div class="user-role">Administrator</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Metrics Cards -->
+<div class="metrics-grid">
+  <div class="metric-card">
+    <div class="metric-icon">
+      <i class="fas fa-eye"></i>
+    </div>
+    <div class="metric-title">Users Today</div>
+    <div class="metric-value">{{ connectedToday }}</div>
+    <div class="metric-trend trend-up">
+      <i class="fas fa-arrow-up"></i>
+      <span>+5.93% ({{ connectedToday | percentChange }} this week)</span>
+    </div>
+  </div>
+
+  <div class="metric-card">
+    <div class="metric-icon">
+      <i class="fas fa-users"></i>
+    </div>
+    <div class="metric-title">Total Users</div>
+    <div class="metric-value">{{ totalUsers }}</div>
+    <div class="metric-trend trend-up">
+      <i class="fas fa-arrow-up"></i>
+      <span>+7.05% ({{ totalUsers | percentChange : 8000 }} this year)</span>
+    </div>
+  </div>
+
+  <div class="metric-card">
+    <div class="metric-icon">
+      <i class="fas fa-shopping-cart"></i>
+    </div>
+    <div class="metric-title">Total Orders</div>
+    <div class="metric-value">{{ totalOrders }}</div>
+    <div class="metric-trend trend-up">
+      <i class="fas fa-arrow-up"></i>
+      <span>+27.4% ({{ totalOrders | percentChange : 1943 }} this year)</span>
+    </div>
+  </div>
+
+  <div class="metric-card">
+    <div class="metric-icon">
+      <i class="fas fa-dollar-sign"></i>
+    </div>
+    <div class="metric-title">Total Sales</div>
+    <div class="metric-value">${{ totalSales }}</div>
+    <div class="metric-trend trend-up">
+      <i class="fas fa-arrow-up"></i>
+      <span>+27.4% (${{ totalSales | percentChange : 20395 }} this year)</span>
+    </div>
+  </div>
+</div>
+
+<!-- Charts -->
+<!-- Charts -->
+<div class="charts-grid">
+  <div class="chart-card">
+    <div class="chart-header">
+      <div class="chart-title">User Connections (Last 7 Days)</div>
+      <div class="chart-actions">
+        <button class="chart-btn active">Week</button>
+        <button class="chart-btn">Month</button>
+      </div>
+    </div>
+    <div class="chart-container">
+      <canvas
+        baseChart
+        [type]="'line'"
+        [data]="lineChartData"
+        [options]="lineChartOptions"
+      ></canvas>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-header">
+      <div class="chart-title">User Roles Distribution</div>
+    </div>
+    <div class="chart-container">
+      <canvas
+        baseChart
+        [type]="'doughnut'"
+        [data]="doughnutChartData"
+        [options]="doughnutChartOptions"
+      ></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- User List -->
+<div class="users-card">
+  <div class="users-header">
+    <div class="users-title">Users</div>
+    <button class="chart-btn" (click)="refreshUsers()">
+      <i class="fas fa-sync-alt"></i> Refresh
+    </button>
+  </div>
+
+  <div class="table-container">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of filteredUsers">
+          <td>{{ user.id }}</td>
+          <td>{{ user.userName }}</td>
+          <td>{{ user.userFirstName }}</td>
+          <td>{{ user.userLastName }}</td>
+          <td>
+            <span
+              class="role-badge"
+              [ngClass]="{
+                'role-admin': user.role[0].roleName === 'Admin',
+                'role-manager': user.role[0].roleName === 'Manager',
+                'role-user': user.role[0].roleName === 'User'
+              }"
+            >
+              {{ user.role[0].roleName }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

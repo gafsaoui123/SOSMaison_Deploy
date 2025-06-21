@@ -1,74 +1,79 @@
 <footer class="footer">
   <div class="container">
-    <div class="footer-content">
-      <!-- Informations sur l'entreprise -->
-      <div class="footer-column company-info">
-        <div class="logo">
-          <a href="#"> <i class="fa fa-home"></i> SafeHomeConnect </a>
+    <div class="footer-grid">
+      <!-- Company Info -->
+      <div class="footer-section company-info">
+        <div class="logo-wrapper">
+          <a class="logo" href="#">
+            <i class="fas fa-home"></i>
+            <span>SOSmaison</span>
+          </a>
         </div>
-        <p>
+        <p class="tagline">
           Votre plateforme de confiance pour tous vos besoins en services à
           domicile, vous connectant à des professionnels fiables dans votre
           région.
         </p>
         <div class="social-links">
-          <a href="#" aria-label="Facebook"
-            ><i class="fab fa-facebook-f"></i
-          ></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="Instagram"
-            ><i class="fab fa-instagram"></i
-          ></a>
+          <a href="#" aria-label="Facebook">
+            <div class="social-icon"><i class="fab fa-facebook-f">FB</i></div>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <div class="social-icon"><i class="fab fa-twitter"></i>X</div>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <div class="social-icon"><i class="fab fa-instagram">I</i></div>
+          </a>
         </div>
       </div>
 
-      <!-- Liens rapides -->
-      <div class="footer-column">
-        <h3>Liens rapides</h3>
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h3 class="section-title">Liens rapides</h3>
         <ul class="footer-links">
-          <li><a href="#">Accueil</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Prestataires</a></li>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#" class="link-item">Accueil</a></li>
+          <li><a routerLink="/providers" class="link-item">Services</a></li>
+          <li><a routerLink="/providers" class="link-item">Prestataires</a></li>
+          <li><a routerLink="/about" class="link-item">À propos</a></li>
+          <li><a routerLink="" class="link-item">Contact</a></li>
         </ul>
       </div>
 
-      <!-- Nos services -->
-      <div class="footer-column">
-        <h3>Nos services</h3>
+      <!-- Services -->
+      <div class="footer-section">
+        <h3 class="section-title">Nos services</h3>
         <ul class="footer-links">
-          <li><a href="#">Plomberie</a></li>
-          <li><a href="#">Électricité</a></li>
-          <li><a href="#">Nettoyage</a></li>
-          <li><a href="#">Menuiserie</a></li>
-          <li><a href="#">Peinture</a></li>
+          <li><a href="#" class="link-item">Plomberie</a></li>
+          <li><a href="#" class="link-item">Électricité</a></li>
+          <li><a href="#" class="link-item">Nettoyage</a></li>
+          <li><a href="#" class="link-item">Menuiserie</a></li>
+          <li><a href="#" class="link-item">Peinture</a></li>
         </ul>
       </div>
 
-      <!-- Contactez-nous -->
-      <div class="footer-column">
-        <h3>Contactez-nous</h3>
+      <!-- Contact -->
+      <div class="footer-section">
+        <h3 class="section-title">Contactez-nous</h3>
         <ul class="contact-info">
-          <li>
-            <i class="fas fa-map-marker-alt"></i>
-            <span>123 rue des Services, Ville, Pays</span>
+          <li class="contact-item">
+            <i class="fas fa-map-marker-alt icon"></i>
+            <span>123 rue des Services, tunis, Tunisie</span>
           </li>
-          <li>
-            <i class="fas fa-phone-alt"></i>
-            <span>+1 (555) 123-4567</span>
+          <li class="contact-item">
+            <i class="fas fa-phone-alt icon"></i>
+            <span>+216 93025897</span>
           </li>
-          <li>
-            <i class="fas fa-envelope"></i>
-            <span>info&#64;safehomeconnect.com</span>
+          <li class="contact-item">
+            <i class="fas fa-envelope icon"></i>
+            <span>info&#64;sosmaison.com</span>
           </li>
         </ul>
       </div>
     </div>
 
-    <!-- Droits d'auteur -->
+    <!-- Copyright -->
     <div class="copyright">
-      <p>© {{ 2025 }} SafeHomeConnect. Tous droits réservés.</p>
+      <p>&copy; {{ currentYear }} SOSmaison. Tous droits réservés.</p>
     </div>
   </div>
 </footer>

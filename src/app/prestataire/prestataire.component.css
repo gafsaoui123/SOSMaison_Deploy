@@ -1,0 +1,63 @@
+.promo-section {
+  background: linear-gradient(90deg, #f7931e, #f68b1f);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.promo-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.promo-text {
+  flex: 1 1 50%;
+  padding: 1rem;
+  color: #ffffff;
+}
+
+.promo-text h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.promo-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+.cta-button {
+  margin-top: 1.5rem;
+  background-color: #ffffff;
+  color: #f7931e;
+  border: none;
+  padding: 1rem 2rem; /* Increased padding */
+  border-radius: 10px; /* Slightly more rounded */
+  font-weight: 1000;
+  font-size: 1.2rem; /* Increased font size */
+  letter-spacing: 0.5px; /* Slight spacing for readability */
+  cursor: pointer;
+  transition: background-color 0.6s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add light shadow for clarity */
+}
+
+.cta-button:hover {
+  transform: scale(1.03); /* Slight grow effect on hover */
+}
+
+
+.promo-image {
+  flex: 1 1 40%;
+  text-align: right;
+}
+
+.promo-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}

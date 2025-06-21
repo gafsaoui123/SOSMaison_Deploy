@@ -1,60 +1,68 @@
 <div class="signup-container">
   <div class="signup-modal">
     <div class="row g-0 h-100">
-      <!-- Left Side - Form -->
+      <!-- Partie gauche - Formulaire -->
       <div class="col-md-5 signup-left">
         <div class="brand-container">
           <div class="brand-logo">SOSmaison</div>
         </div>
 
         <div class="signup-form-content">
-          <h1 class="signup-title">Create an account</h1>
-          <p class="signup-subtitle">Sign up and get 30 day free trial</p>
+          <h1 class="signup-title">Créer un compte</h1>
+          <p class="signup-subtitle">
+            Inscrivez-vous et profitez d'un essai gratuit de 30 jours
+          </p>
 
           <form
             #registerForm="ngForm"
             (ngSubmit)="register(registerForm)"
             class="signup-form"
           >
-            <!-- User Name Field -->
+            <!-- Champ Nom d'utilisateur ou Email -->
             <div class="mb-3">
-              <label for="userName" class="form-label">User name</label>
+              <label for="userName" class="form-label"
+                >Nom d'utilisateur ou Email</label
+              >
               <input
                 ngModel
                 type="text"
                 name="userName"
                 class="form-control"
                 id="userName"
-                placeholder="Enter your user name"
+                placeholder="Entrez votre nom d'utilisateur"
               />
             </div>
 
-            <!-- Email Field -->
+            <!-- Champ Prénom -->
             <div class="mb-3">
-              <label for="userFirstName" class="form-label">First Name</label>
+              <label for="userFirstName" class="form-label">Prénom</label>
               <input
                 ngModel
                 type="text"
                 class="form-control"
                 name="userFirstName"
                 id="userFirstName"
-                placeholder="Enter your First Name"
+                placeholder="Entrez votre prénom"
               />
             </div>
+
+            <!-- Champ Nom -->
             <div class="mb-3">
-              <label for="userLastName" class="form-label">Last Name</label>
+              <label for="userLastName" class="form-label">Nom</label>
               <input
                 ngModel
                 type="text"
                 class="form-control"
                 id="userLastName"
                 name="userLastName"
-                placeholder="Enter your Last Name"
+                placeholder="Entrez votre nom"
               />
             </div>
+
+            <!-- Champ Numéro de téléphone -->
             <div class="mb-3">
               <label for="userPhoneNumber" class="form-label"
-                >Phone Number</label
+                >Numéro de téléphone</label
               >
               <input
                 ngModel
@@ -62,13 +70,13 @@
                 class="form-control"
                 name="userPhoneNumber"
                 id="userPhoneNumber"
-                placeholder="Enter your Phone Number"
+                placeholder="Entrez votre numéro de téléphone"
               />
             </div>
 
-            <!-- Password Field -->
+            <!-- Champ Mot de passe -->
             <div class="mb-4">
-              <label for="password" class="form-label">Password</label>
+              <label for="password" class="form-label">Mot de passe</label>
               <div class="password-input-container">
                 <input
                   ngModel
@@ -76,7 +84,7 @@
                   class="form-control"
                   name="userPassword"
                   id="userPassword"
-                  placeholder="Create a password"
+                  placeholder="Créez un mot de passe"
                 />
                 <button type="submit" class="btn-toggle-password">
                   <i class="far fa-eye-slash"></i>
@@ -84,107 +92,29 @@
               </div>
             </div>
 
-            <!-- Submit Button -->
+            <!-- Bouton de soumission -->
             <button type="submit" class="btn btn-submit w-100 mb-4">
-              Submit
+              S'inscrire
             </button>
-
-            <!-- Social Signup Options -->
           </form>
 
-          <!-- Footer Links -->
+          <!-- Liens de pied de page -->
           <div class="signup-footer">
             <div class="signin-text">
-              <span>Have any account? </span>
-              <a routerLink="/login" class="signin-link">Sign in</a>
+              <span>Vous avez déjà un compte ? </span>
+              <a routerLink="/login" class="signin-link">Se connecter</a>
             </div>
-            <a href="#" class="terms-link">Terms & Conditions</a>
+            <a href="#" class="terms-link">Conditions générales</a>
           </div>
         </div>
       </div>
 
-      <!-- Right Side - Image & Calendar -->
+      <!-- Partie droite - Image & Calendrier -->
       <div class="col-md-7 signup-right">
-        <button type="button" class="btn-close-custom" aria-label="Close">
-          <i class="fas fa-times"></i>
-        </button>
-
-        <!-- Task Cards -->
-        <div class="task-card task-card-primary">
-          <div class="task-card-content">
-            <h6 class="task-card-title">Task Review With Team</h6>
-            <p class="task-card-time">09:30am-10:20am</p>
-          </div>
-          <div class="task-card-indicator"></div>
-        </div>
-
-        <div class="task-card task-card-secondary">
-          <div class="task-card-content">
-            <p class="task-card-time">09:30am-10:00am</p>
-          </div>
-        </div>
-
-        <!-- Calendar Widget -->
-        <div class="calendar-widget">
-          <div class="calendar-days">
-            <div class="calendar-day">
-              <span class="day-name">Sun</span>
-              <span class="day-number">22</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-name">Mon</span>
-              <span class="day-number">23</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-name">Tue</span>
-              <span class="day-number">24</span>
-            </div>
-            <div class="calendar-day active">
-              <span class="day-name">Wed</span>
-              <span class="day-number">25</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-name">Thu</span>
-              <span class="day-number">26</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-name">Fri</span>
-              <span class="day-number">27</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-name">Sat</span>
-              <span class="day-number">28</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Meeting Card -->
-        <div class="task-card task-card-meeting">
-          <div class="task-card-content">
-            <h6 class="task-card-title">Daily Meeting</h6>
-            <p class="task-card-time">12:00pm-01:00pm</p>
-            <div class="attendees">
-              <div class="attendee-avatar"></div>
-              <div class="attendee-avatar"></div>
-              <div class="attendee-avatar"></div>
-              <div class="attendee-avatar"></div>
-            </div>
-          </div>
-          <div class="task-card-indicator"></div>
-        </div>
-
-        <!-- Team Avatars -->
-        <div class="team-avatars">
-          <div class="team-avatar"></div>
-          <div class="team-avatar"></div>
-          <div class="team-avatar"></div>
-        </div>
-
-        <!-- Background Image -->
         <div class="signup-image-container">
           <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-cnzr2yL7GyjUQsRQ0KxKOxM3rkUvT7.png"
-            alt="Team collaboration"
+            src="https://res.cloudinary.com/kbrenovation/image/upload/plomberie-electricite_k98a8n.jpg"
+            alt="Collaboration en équipe"
             class="signup-image"
           />
         </div>

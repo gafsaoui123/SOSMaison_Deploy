@@ -17,6 +17,9 @@ import { Router } from '@angular/router';
 })
 export class ShowServiceDetailsComponent implements OnInit {
 
+  pageNumber: number = 0;
+  showLoadMoreButton: boolean = false;
+
   products: Product[] = [];
 
 
@@ -27,21 +30,31 @@ export class ShowServiceDetailsComponent implements OnInit {
   }
 
   public getallProducts() {
-    this.productService.getAllProducts()
-    .pipe(
-      map((x: Product[], i)=>x.map((product: Product) => this.imageProcessingService.createImages(product)))
-    )
-    .subscribe(
-      (resp: Product[]) => {
-        this.products = resp;
-        console.log('Products loaded:', this.products);
-      },
-      (error: HttpErrorResponse) => {
-        console.error('Error fetching products:', error);
-      }
-    );
-  }
+      this.productService.getAllProducts(this.pageNumber)
+        .pipe(
+          map((x: Product[], i) => x.map((product: Product) => this.imageProcessingService.createImages(product)))
+        )
+        .subscribe(
+          (resp: Product[]) => {
+            if (resp.length ==9) {
+              this.showLoadMoreButton = true; // Hide button if less than 10 products
+            } else {
+              this.showLoadMoreButton = false; // Show button if 10 or more products
+            }
+            resp.forEach(p=>this.products.push(p));
+            
+            console.log('Produits chargés :', this.products);
+          },
+          (error: HttpErrorResponse) => {
+            console.error('Erreur lors de la récupération des produits :', error);
+          }
+        );
+    }
 
+  public loadMore() {
+    this.pageNumber++;
+    this.getallProducts();
+  }
  
 
 public deleteProduct(productId: number): void {
@@ -55,6 +68,9 @@ public deleteProduct(productId: number): void {
       this.productService.deleteProduct(productId).subscribe(
         () => {
           console.log('Produit supprimé avec succès');
+          // Reset pagination and reload data
+          this.pageNumber = 0;
+          this.products = [];
           this.getallProducts();
         },
         (error: HttpErrorResponse) => {

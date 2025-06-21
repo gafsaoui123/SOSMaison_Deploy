@@ -1,13 +1,9 @@
-<div class="safehome-hero">
-  <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+<div class="sos-header">
+  <nav class="navbar navbar-expand-lg">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" routerLink="/home">
-        <img
-          src="assets/logo1.png"
-          alt="Logo SOS Maison"
-          style="height: 50px; margin-right: 10px"
-        />
-        <span class="fw-bold" style="font-size: 1.1rem">SOS Maison</span>
+        <img src="assets/logo1.png" alt="Logo SOS Maison" class="brand-logo" />
+        <span class="brand-name">SOSmaison</span>
       </a>
 
       <button
@@ -20,16 +16,24 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNav">
-        <!--**********************************-->
-        <ul *ngIf="isLoggedIn()" class="navbar-nav mx-auto">
+        <!-- Logged In Menu -->
+        <ul *ngIf="isLoggedIn()" class="navbar-nav mx-auto nav-links">
           <li class="nav-item">
             <a class="nav-link" routerLink="/home">Accueil</a>
           </li>
           <li class="nav-item">
-            <a *ngIf="!isAdmin()" class="nav-link" href="#">Services</a>
+            <a
+              *ngIf="!isAdmin()"
+              class="nav-link"
+              routerLink="/home"
+              fragment="service-providers"
+              >Services</a
+            >
           </li>
           <li class="nav-item">
-            <a *ngIf="!isAdmin()" class="nav-link" href="#">Prestataires</a>
+            <a *ngIf="!isAdmin()" class="nav-link" routerLink="/providers"
+              >Prestataires</a
+            >
           </li>
           <li class="nav-item">
             <a *ngIf="!isAdmin()" class="nav-link" routerLink="/about"
@@ -37,7 +41,9 @@
             >
           </li>
           <li class="nav-item">
-            <a *ngIf="isUser()" class="nav-link" href="#">Contact</a>
+            <a *ngIf="isUser()" class="nav-link" routerLink="/chat"
+              >Chat Room</a
+            >
           </li>
           <li class="nav-item">
             <a
@@ -52,30 +58,25 @@
               class="nav-link"
               routerLink="/addnewproduct"
               *ngIf="userService.roleMatch(['Admin'])"
-              >Ajouter un service</a
+              >Ajouter un prestataire</a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/showservice" *ngIf="isAdmin()"
-              >Afficher les détails du service</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLink="/user"
-              *ngIf="userService.roleMatch(['User'])"
-              >Tableau Utilisateur</a
+            <a class="nav-link" routerLink="/showservice" *ngIf="isAdmin()">
+              les détails du prestataire</a
             >
           </li>
         </ul>
-        <!--**********************************-->
-        <ul *ngIf="!isLoggedIn()" class="navbar-nav mx-auto">
+
+        <!-- Not Logged In Menu -->
+        <ul *ngIf="!isLoggedIn()" class="navbar-nav mx-auto nav-links">
           <li class="nav-item">
             <a class="nav-link" routerLink="/home">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">Services</a>
+            <a class="nav-link" routerLink="/home" fragment="service-providers"
+              >Services</a
+            >
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/providers">Prestataires</a>
@@ -84,9 +85,6 @@
             <a class="nav-link" routerLink="/about">À propos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/emergency">Contact</a>
-          </li>
-          <li class="nav-item">
             <a
               class="nav-link"
               routerLink="/admin"
@@ -111,15 +109,15 @@
             >
           </li>
         </ul>
-        <!--**********************************-->
-        <div class="d-flex">
-          <a routerLink="/emergency" class="btn btn-outline-secondary me-2">
+
+        <div class="d-flex align-items-center nav-actions">
+          <a routerLink="/emergency" class="btn emergency-btn me-2">
             <i class="bi bi-telephone-fill"></i> Urgence
           </a>
 
           <button
             *ngIf="!isLoggedIn()"
-            class="btn btn-primary"
+            class="btn primary-btn"
             routerLink="/login"
             type="button"
           >
@@ -128,13 +126,19 @@
           <button
             *ngIf="isLoggedIn()"
             type="button"
-            style="margin-left: 2px"
-            class="btn btn-primary"
+            class="btn logout-btn"
             (click)="logout()"
             routerLink="/home"
           >
             Se déconnecter
           </button>
+
+          <img
+            *ngIf="userService.roleMatch(['User'])"
+            [src]="getUserImage()"
+            alt="User Icon"
+            class="user-icon"
+          />
         </div>
       </div>
     </div>

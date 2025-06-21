@@ -1,75 +1,85 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ChartData, ChartOptions, ChartType } from 'chart.js';
+import { UserService } from '../services/user.service';
 
-interface Service {
-  id: number;
-  name: string;
-  description: string;
-  icon: string;
-}
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent {
-  services: Service[] = [
-    {
-      id: 1,
-      name: 'Cleaning Services',
-      description: 'Professional home cleaning services for a spotless environment.',
-      icon: 'fas fa-broom'
+export class AdminComponent implements OnInit {
+  // Metrics
+  connectedToday = 0;
+  totalUsers = 0;
+  totalOrders = 18800;
+  totalSales = 35078;
+  searchQuery = '';
+  
+  // Charts
+  lineChartData: ChartData<'line'> = {
+    labels: [],
+    datasets: [{
+      label: 'Connections',
+      data: [],
+      borderColor: '#4361ee',
+      backgroundColor: 'rgba(67, 97, 238, 0.1)',
+      borderWidth: 3,
+      pointRadius: 5,
+      tension: 0.3,
+      fill: true
+    }]
+  };
+  
+  doughnutChartData: ChartData<'doughnut'> = {
+    labels: [],
+    datasets: [{
+      data: [],
+      backgroundColor: ['#4361ee', '#10b981', '#f59e0b'],
+      hoverOffset: 4
+    }]
+  };
+  
+  lineChartOptions: ChartOptions<'line'> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false }
     },
-    {
-      id: 2,
-      name: 'Plumbing',
-      description: '24/7 emergency plumbing services and maintenance.',
-      icon: 'fas fa-wrench'
-    },
-    {
-      id: 3,
-      name: 'Electrical Work',
-      description: 'Licensed electricians for all your electrical needs.',
-      icon: 'fas fa-bolt'
-    },
-    {
-      id: 4,
-      name: 'Painting',
-      description: 'Interior and exterior painting services.',
-      icon: 'fas fa-paint-roller'
-    },
-    {
-      id: 5,
-      name: 'Gardening',
-      description: 'Professional landscaping and garden maintenance.',
-      icon: 'fas fa-leaf'
-    },
-    {
-      id: 6,
-      name: 'Pest Control',
-      description: 'Effective pest control solutions for your home.',
-      icon: 'fas fa-bug'
+    scales: {
+      y: { beginAtZero: true, ticks: { precision: 0 } }
     }
-  ];
-
-  contactData = {
-    name: '',
-    email: '',
-    message: ''
+  };
+  
+  doughnutChartOptions: ChartOptions<'doughnut'> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom' },
+      tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.parsed} users` } }
+    }
   };
 
-  bookService(service: Service) {
-    alert(`Booking service: ${service.name}`);
-    // Implement actual booking logic here
+  // User data
+  users: any[] = [];
+  filteredUsers: any[] = [];
+
+  constructor(private userService: UserService) {}
+
+  ngOnInit(): void {
+    
   }
 
-  onSubmit() {
-    console.log('Form submitted:', this.contactData);
-    // Implement actual form submission logic here
-    alert('Thank you for your message. We will get back to you soon!');
-    this.contactData = {
-      name: '',
-      email: '',
-      message: ''
-    };
+  
+
+  
+
+  
+    
+    
+  
+
+  logout(): void {
+    // Implement your logout logic here
+    console.log('User logged out');
   }
 }

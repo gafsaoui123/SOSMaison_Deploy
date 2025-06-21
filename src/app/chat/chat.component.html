@@ -1,0 +1,181 @@
+<div class="chat-wrapper">
+  <!-- Username Input Page -->
+  <div *ngIf="!isConnected" class="auth-container">
+    <div class="auth-card">
+      <div class="app-brand">
+        <div class="logo">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8 12H8.01M12 12H12.01M16 12H16.01M21 12C21 16.4183 16.9706 20 12 20C10.4607 20 9.01172 19.6565 7.74467 19.0551L3 20L4.39499 16.28C3.51156 15.0423 3 13.5743 3 12C3 7.58172 7.02944 4 12 4C16.9706 4 21 7.58172 21 12Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <h1>SOSmaison</h1>
+      </div>
+
+      <h2 class="auth-title">Rejoindre le salon de discussion</h2>
+      <p class="auth-subtitle">
+        Entrez votre nom d'utilisateur pour commencer à discuter
+      </p>
+
+      <form (ngSubmit)="connect()" class="auth-form">
+        <div class="input-group">
+          <input
+            [(ngModel)]="username"
+            name="username"
+            type="text"
+            placeholder="Nom d'utilisateur"
+            autocomplete="off"
+            class="input-field"
+            autofocus
+          />
+          <svg
+            class="input-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+
+        <button type="submit" class="auth-button">
+          Commencer la discussion
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 12H19M19 12L13 6M19 12L13 18"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Chatroom Interface -->
+  <div *ngIf="isConnected" class="chat-container">
+    <!-- Header -->
+    <div class="chat-header">
+      <div class="header-content">
+        <div class="chat-info">
+          <h2>Chat Room</h2>
+          <div class="online-indicator">
+            <span class="indicator-dot"></span>
+            <span>En ligne</span>
+          </div>
+        </div>
+        <div class="user-badge">
+          <span [style.background]="getAvatarColor(username)">
+            {{ username.charAt(0) }}
+          </span>
+          {{ username }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Connection Status -->
+    <div *ngIf="connectingMessage" class="connection-status">
+      {{ connectingMessage }}
+    </div>
+
+    <!-- Messages -->
+    <ul class="messages-list" id="messageArea">
+      <li
+        *ngFor="let message of messages"
+        [ngClass]="{
+          'event-message': message.type !== 'CHAT',
+          'chat-message': message.type === 'CHAT',
+          'own-message': message.sender === username
+        }"
+      >
+        <div
+          *ngIf="message.type === 'CHAT' && message.sender !== username"
+          class="message-avatar"
+          [style.background]="getAvatarColor(message.sender)"
+        >
+          {{ message.sender.charAt(0) }}
+        </div>
+
+        <div class="message-content">
+          <div
+            *ngIf="message.type === 'CHAT' && message.sender !== username"
+            class="message-sender"
+          >
+            {{ message.sender }}
+            <span class="message-time">
+              {{ message.timestamp | date : "shortTime" }}
+            </span>
+          </div>
+
+          <div class="message-text">
+            <p>
+              {{
+                message.type === "CHAT"
+                  ? message.content
+                  : message.sender +
+                    (message.type === "JOIN" ? " joined" : " left")
+              }}
+            </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Message Input -->
+    <form (ngSubmit)="sendMessage()" class="message-form">
+      <div class="input-container">
+        <input
+          [(ngModel)]="message"
+          name="message"
+          type="text"
+          placeholder="Ecrire un message..."
+          autocomplete="off"
+          class="message-input"
+        />
+        <button type="submit" class="send-button">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M22 2L11 13M22 2L15 22L11 13M11 13L2 9L22 2"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

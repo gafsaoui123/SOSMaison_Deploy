@@ -156,7 +156,7 @@ color: rgb(43, 43, 43) ;
   background-color: #fdd835; /* yellow */
   color: #000;
   white-space: nowrap;
-  width: 100%;
+  width: 115%;
   border: none;
 }
 
@@ -672,7 +672,7 @@ color: rgb(43, 43, 43) ;
 }
 
 .star.filled {
-  color: #ffc107;
+  color: #f7931e;
 }
 
 .testimonial-text {
@@ -781,7 +781,7 @@ color: rgb(43, 43, 43) ;
 }
 
 .star.filled {
-  color: #ffc107;
+  color: #f7931e;
 }
 
 .testimonial-text {
@@ -906,5 +906,104 @@ p {
     justify-content: center;
   }
 }
-/* Add any additional styles below this line */
+
+/* Floating WhatsApp Button */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 60px;
+  right: 50px;
+  z-index: 1000;
+}
+
+.whatsapp-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  box-shadow: 5px 12px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Modal Styles */
+
+
+
+
+.modal-content button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #1ABC9C;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+  background-color: #16a085;
+}
+
+/* Profile Window Styles */
+.profile-window {
+  position: fixed;
+  bottom: 120px;
+  right: 100px;
+  width: 300px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.profile-content {
+  display: flex;
+  align-items: center;
+}
+
+.profile-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-details {
+  flex: 1;
+}
+
+.status {
+  color: green;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.whatsapp-button, .call-button {
+  flex: 1;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.whatsapp-button {
+  background-color: #1ABC9C;
+  color: white;
+}
+
+.call-button {
+  background-color: #3498DB;
+  color: white;
+}
 

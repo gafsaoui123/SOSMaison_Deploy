@@ -36,6 +36,15 @@ import { ReserveServiceComponent } from './reserve-service/reserve-service.compo
 import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import { EmergencyComponent } from './emergency/emergency.component';
+import { ChatComponent } from './chat/chat.component';
+import { PaymentComponent } from './payment/payment.component';
+import { PrestataireComponent } from './prestataire/prestataire.component';
+
+import { WhatsAppComponent } from './whatsapp/whatsapp.component';
+import { NgChartsModule } from 'ng2-charts';
+import { PercentChangePipe } from './percent-change.pipe';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { UserprofileComponent } from './userprofile/userprofile.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +68,15 @@ import { EmergencyComponent } from './emergency/emergency.component';
     FooterComponent,
     ReserveServiceComponent,
     RegisterComponent,
-    EmergencyComponent
+    EmergencyComponent,
+    ChatComponent,
+    PaymentComponent,
+    PrestataireComponent,
+    
+    WhatsAppComponent,
+    PercentChangePipe,
+    DashboardComponent,
+    UserprofileComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -74,7 +91,8 @@ import { EmergencyComponent } from './emergency/emergency.component';
     MatIconModule,
     MatCardModule,CommonModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    NgChartsModule
   ],
   providers: [
     AuthGuard,
